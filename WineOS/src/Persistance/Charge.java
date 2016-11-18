@@ -25,7 +25,7 @@ import javax.persistence.OneToOne;
 		return Bezeichnung;
 	}
 	public void setBezeichnung(String bezeichnung) {
-		this.Bezeichnung = bezeichnung;
+		this.Bezeichnung = bezeichnung; 
 	}
 	
 	@OneToOne private Flasche flasche_charge;
