@@ -6,5 +6,7 @@ public class TestCommit {
 	{
 		
 	}
+	
+	String test = "Test";
 
 }
