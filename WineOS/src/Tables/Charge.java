@@ -4,11 +4,10 @@ import javax.persistence.Id;
 
 @Entity public class Charge 
 {
-	public Charge(int ID, String Bezeichnung, Flasche flascheCharge)
+	public Charge(int ID, String Bezeichnung)
 	{
 		setID(ID);
 		setBezeichnung(Bezeichnung);
-		//setFlasche_charge(flascheCharge);
 	}
 	
 	@Id private int ID;
