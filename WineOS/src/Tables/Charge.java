@@ -1,7 +1,7 @@
 package Tables;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity public class Charge 
 {
@@ -28,7 +28,7 @@ import javax.persistence.OneToOne;
 		this.Bezeichnung = bezeichnung; 
 	}
 	
-	@OneToOne private Flasche flasche_charge;
+	@ManyToOne private Flasche flasche_charge;
 	public void setFlasche_charge (Flasche flascheCharge) {
 		 this.flasche_charge = flascheCharge;
 		 }
