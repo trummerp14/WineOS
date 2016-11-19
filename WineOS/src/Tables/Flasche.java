@@ -5,13 +5,14 @@ import javax.persistence.Id;
 
 @Entity public class Flasche {
 	
-	public Flasche(String Bezeichnung, double Füllmenge, int FK_Charge, int Stück, String Ausprägung)
+	public Flasche(String Bezeichnung, double Füllmenge, int FK_Charge, int Stück, String Ausprägung, Charge Charge)
 	{
 		setBezeichnung(Bezeichnung);
 		setFüllmenge(Füllmenge);
 		setFK_Charge(FK_Charge);
 		setStück(Stück);
 		setAusprägung(Ausprägung);
+		setCharge(Charge);
 	}
 	
 	
@@ -20,14 +21,20 @@ import javax.persistence.Id;
 	{
 		this.Charge = charge;
 	}
+	public Charge getCharge()
+	{
+		return Charge;
+	}
 
 	@Id private int ID;
 	public int getID() {
 		return ID;
 	}
-	public void setID(int iD) {
+	
+	//By the SQLServer the ID should be auto incremented by the Server
+	/*public void setID(int iD) {
 		ID = iD;
-	}
+	}*/
 	
 	private String Bezeichnung;
 	public String getBezeichnung() {
@@ -69,5 +76,9 @@ import javax.persistence.Id;
 		Ausprägung = ausprägung;
 	}
 	
-
+	@Override
+	public String toString() {
+		return "Flasche [Charge=" + Charge + ", ID=" + ID + ", Bezeichnung=" + Bezeichnung + ", Füllmenge=" + Füllmenge
+				+ ", FK_Charge=" + FK_Charge + ", Stück=" + Stück + ", Ausprägung=" + Ausprägung + "]";
+	}
 }

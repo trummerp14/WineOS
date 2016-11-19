@@ -1,7 +1,6 @@
 package Tables;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity public class Charge 
 {
@@ -9,7 +8,7 @@ import javax.persistence.ManyToOne;
 	{
 		setID(ID);
 		setBezeichnung(Bezeichnung);
-		setFlasche_charge(flascheCharge);
+		//setFlasche_charge(flascheCharge);
 	}
 	
 	@Id private int ID;
@@ -28,11 +27,8 @@ import javax.persistence.ManyToOne;
 		this.Bezeichnung = bezeichnung; 
 	}
 	
-	@ManyToOne private Flasche flasche_charge;
-	public void setFlasche_charge (Flasche flascheCharge) {
-		 this.flasche_charge = flascheCharge;
-		 }
-		 public Flasche getParkingSpace() { 
-			 return flasche_charge;
-		 }
+	@Override
+	public String toString() {
+		return "Charge [ID=" + ID + ", Bezeichnung=" + Bezeichnung + "]";
+	}
 }
