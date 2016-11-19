@@ -1,4 +1,4 @@
-package Persistance;
+package Tables;
 
 public class Flasche {
 
