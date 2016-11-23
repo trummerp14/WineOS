@@ -1,4 +1,4 @@
-package Tests;
+package at.fhj.swd.WineOS.Tables;
 import static org.junit.Assert.*;
 
 import javax.persistence.EntityManager;
@@ -10,9 +10,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Tables.Charge;
+import at.fhj.swd.WineOS.Tables.Charge;
 
-	//@org.junit.FixMethodOrder( org.junit.runners.MethodSorters.NAME_ASCENDING)
+	@org.junit.FixMethodOrder( org.junit.runners.MethodSorters.NAME_ASCENDING)
 public class Test_Charge 
 {
 	 static EntityManagerFactory factory;
@@ -43,7 +43,7 @@ public class Test_Charge
 	 @Test public void create () 
 	 {
 		 transaction.begin ();
-		 Charge Charge_1 = new Charge (id, Bezeichnung);
+		 Charge Charge_1 = new Charge (id, Bezeichnung, null);
 		 assertNotNull (Charge_1);
 		 manager.persist (Charge_1);
 		 transaction.commit();

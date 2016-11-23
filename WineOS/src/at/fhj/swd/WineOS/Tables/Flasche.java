@@ -1,26 +1,30 @@
-package Tables;
+package at.fhj.swd.WineOS.Tables;
 import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
-@Entity public class Flasche {
+@Entity(name="dbo.Flasche") public class Flasche {
 	
 	public Flasche(String Bezeichnung, double Fuellmenge, int FK_Charge, int Stueck, String Auspraegung, Charge Charge)
 	{
 		setBezeichnung(Bezeichnung);
 		setFuellmenge(Fuellmenge);
-		setFK_Charge(FK_Charge);
 		setStueck(Stueck);
 		setAuspraegung(Auspraegung);
 		setCharge(Charge);
 	}
 	
+	protected Flasche(){};
 	
-	@ManyToOne private Charge Charge;
+	
+	@ManyToOne @JoinColumn(name="FK_Charge")
+	private Charge Charge;
 	public void setCharge(Charge charge)
 	{
 		this.Charge = charge;
 	}
+	
 	public Charge getCharge()
 	{
 		return Charge;
@@ -52,14 +56,6 @@ import javax.persistence.Id;
 		Fuellmenge = fuellmenge;
 	}
 	
-	private int FK_Charge;
-	public int getFK_Charge() {
-		return FK_Charge;
-	}
-	public void setFK_Charge(int fK_Charge) {
-		FK_Charge = fK_Charge;
-	}
-	
 	private int Stueck;
 	public int getStueck() {
 		return Stueck;
@@ -79,6 +75,6 @@ import javax.persistence.Id;
 	@Override
 	public String toString() {
 		return "Flasche [Charge=" + Charge + ", ID=" + ID + ", Bezeichnung=" + Bezeichnung + ", Fuellmenge=" + Fuellmenge
-				+ ", FK_Charge=" + FK_Charge + ", Stueck=" + Stueck + ", Auspruegung=" + Auspraegung + "]";
+				 + ", Stueck=" + Stueck + ", Auspruegung=" + Auspraegung + "]";
 	}
 }

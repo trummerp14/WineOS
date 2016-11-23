@@ -1,14 +1,31 @@
-package Tables;
+package at.fhj.swd.WineOS.Tables;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-@Entity public class Charge 
+@Entity(name="dbo.Charge") public class Charge 
 {
-	public Charge(int ID, String Bezeichnung)
+	public Charge(int ID, String Bezeichnung, List<Flasche> Flasche)
 	{
 		setID(ID);
 		setBezeichnung(Bezeichnung);
+		setFlaschen(Flasche);
+		
 	}
+	public List<Flasche> getFlaschen() {
+		return Flaschen;
+	}
+	public void setFlaschen(List<Flasche> flaschen) {
+		Flaschen = flaschen;
+	}
+	protected Charge(){};
+	
+	@OneToMany(mappedBy="Charge")
+	private List<Flasche>Flaschen = new ArrayList<Flasche>();
 	
 	@Id private int ID;
 	public int getID() {

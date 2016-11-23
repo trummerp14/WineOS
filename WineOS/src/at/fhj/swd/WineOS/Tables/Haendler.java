@@ -1,4 +1,4 @@
-package Tables;
+package at.fhj.swd.WineOS.Tables;
 import javax.persistence.Id;
 
 import java.util.Date;
