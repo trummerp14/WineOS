@@ -1,5 +1,6 @@
 package Tests;
 
-public class Test_Mapping_Flasche_Händler {
+public class Test_Mapping_Flasche_HÃ¤ndler 
+{
 
 }
