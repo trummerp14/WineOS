@@ -14,7 +14,7 @@
                  value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
        <property name="javax.persistence.jdbc.url"
  				 value="jdbc:sqlserver://localhost:1433;databaseName=Weinverwaltung"/>
-       <property name="javax.persistence.jdbc.user" value="ptrummer"/>
+       <property name="javax.persistence.jdbc.user" value="sa"/>
        <property name="javax.persistence.jdbc.password" value="SWD15!"/>
      </properties>
    </persistence-unit>
