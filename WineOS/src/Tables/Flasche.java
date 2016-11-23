@@ -5,13 +5,13 @@ import javax.persistence.Id;
 
 @Entity public class Flasche {
 	
-	public Flasche(String Bezeichnung, double Füllmenge, int FK_Charge, int Stück, String Ausprägung, Charge Charge)
+	public Flasche(String Bezeichnung, double Fuellmenge, int FK_Charge, int Stueck, String Auspraegung, Charge Charge)
 	{
 		setBezeichnung(Bezeichnung);
-		setFüllmenge(Füllmenge);
+		setFuellmenge(Fuellmenge);
 		setFK_Charge(FK_Charge);
-		setStück(Stück);
-		setAusprägung(Ausprägung);
+		setStueck(Stueck);
+		setAuspraegung(Auspraegung);
 		setCharge(Charge);
 	}
 	
@@ -44,12 +44,12 @@ import javax.persistence.Id;
 		Bezeichnung = bezeichnung;
 	}
 	
-	private double Füllmenge;
-	public double getFüllmenge() {
-		return Füllmenge;
+	private double Fuellmenge;
+	public double getFuellmenge() {
+		return Fuellmenge;
 	}
-	public void setFüllmenge(double füllmenge) {
-		Füllmenge = füllmenge;
+	public void setFuellmenge(double fuellmenge) {
+		Fuellmenge = fuellmenge;
 	}
 	
 	private int FK_Charge;
@@ -60,25 +60,25 @@ import javax.persistence.Id;
 		FK_Charge = fK_Charge;
 	}
 	
-	private int Stück;
-	public int getStück() {
-		return Stück;
+	private int Stueck;
+	public int getStueck() {
+		return Stueck;
 	}
-	public void setStück(int stück) {
-		Stück = stück;
+	public void setStueck(int stueck) {
+		Stueck = stueck;
 	}
 	
-	private String Ausprägung;
-	public String getAusprägung() {
-		return Ausprägung;
+	private String Auspraegung;
+	public String getAuspraegung() {
+		return Auspraegung;
 	}
-	public void setAusprägung(String ausprägung) {
-		Ausprägung = ausprägung;
+	public void setAuspraegung(String auspraegung) {
+		Auspraegung = auspraegung;
 	}
 	
 	@Override
 	public String toString() {
-		return "Flasche [Charge=" + Charge + ", ID=" + ID + ", Bezeichnung=" + Bezeichnung + ", Füllmenge=" + Füllmenge
-				+ ", FK_Charge=" + FK_Charge + ", Stück=" + Stück + ", Ausprägung=" + Ausprägung + "]";
+		return "Flasche [Charge=" + Charge + ", ID=" + ID + ", Bezeichnung=" + Bezeichnung + ", Fuellmenge=" + Fuellmenge
+				+ ", FK_Charge=" + FK_Charge + ", Stueck=" + Stueck + ", Auspruegung=" + Auspraegung + "]";
 	}
 }
