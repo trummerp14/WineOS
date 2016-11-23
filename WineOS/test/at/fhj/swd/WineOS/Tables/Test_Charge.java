@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import at.fhj.swd.WineOS.Tables.Charge;
 
-	@org.junit.FixMethodOrder( org.junit.runners.MethodSorters.NAME_ASCENDING)
+@org.junit.FixMethodOrder( org.junit.runners.MethodSorters.NAME_ASCENDING)
 public class Test_Charge 
 {
 	 static EntityManagerFactory factory;

@@ -16,16 +16,9 @@ import javax.persistence.OneToMany;
 		setFlaschen(Flasche);
 		
 	}
-	public List<Flasche> getFlaschen() {
-		return Flaschen;
-	}
-	public void setFlaschen(List<Flasche> flaschen) {
-		Flaschen = flaschen;
-	}
 	protected Charge(){};
 	
-	@OneToMany(mappedBy="Charge")
-	private List<Flasche>Flaschen = new ArrayList<Flasche>();
+	
 	
 	@Id private int ID;
 	public int getID() {
@@ -33,6 +26,15 @@ import javax.persistence.OneToMany;
 	}
 	public void setID(int iD) {
 		this.ID = iD;
+	}
+	
+	@OneToMany(mappedBy="Charge")
+	private List<Flasche>Flaschen = new ArrayList<Flasche>();
+	public List<Flasche> getFlaschen() {
+		return Flaschen;
+	}
+	public void setFlaschen(List<Flasche> flaschen) {
+		Flaschen = flaschen;
 	}
 	
 	private String Bezeichnung;
