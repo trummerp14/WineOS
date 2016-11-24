@@ -1,15 +1,20 @@
 package at.fhj.swd.WineOS.Tables;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import java.util.Date;
 
-public class Haendler {
+@Entity(name="dbo.Haendler")
+public class Haendler 
+{
 	
 	public Haendler(Date Oeffnungszeit_Von, Date Oeffnungszeit_Bis)
 	{
 		setOeffnungszeit_Von(Oeffnungszeit_Von);
 		setOeffnungszeit_Bis(Oeffnungszeit_Bis);
 	}
+	
+	protected Haendler(){};
 	
 	@Id private int ID;
 	public int getID() {

@@ -6,20 +6,19 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-@Entity(name="dbo.Charge") public class Charge 
+@Entity(name="dbo.Charge") 
+public class Charge 
 {
 	public Charge(int ID, String Bezeichnung, List<Flasche> Flasche)
 	{
 		setID(ID);
 		setBezeichnung(Bezeichnung);
 		setFlaschen(Flasche);
-		
 	}
 	protected Charge(){};
-	
-	
-	
+		
 	@Id private int ID;
 	public int getID() {
 		return ID;
@@ -33,8 +32,8 @@ import javax.persistence.OneToMany;
 	public List<Flasche> getFlaschen() {
 		return Flaschen;
 	}
-	public void setFlaschen(List<Flasche> flaschen) {
-		Flaschen = flaschen;
+	public void setFlaschen(List<Flasche> Flasche) {
+		Flaschen = Flasche;
 	}
 	
 	private String Bezeichnung;
