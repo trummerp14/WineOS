@@ -6,7 +6,7 @@ import javax.persistence.JoinColumn;
 
 @Entity(name="dbo.Flasche") public class Flasche {
 	
-	public Flasche(String Bezeichnung, double Fuellmenge, int FK_Charge, int Stueck, String Auspraegung, Charge Charge)
+	public Flasche(int ID, String Bezeichnung, double Fuellmenge, String Auspraegung, int FK_Charge, int Stueck, Charge Charge)
 	{
 		setBezeichnung(Bezeichnung);
 		setFuellmenge(Fuellmenge);

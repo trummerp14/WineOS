@@ -4,20 +4,35 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity(name="dbo.Haendler") 
 public class Weingut 
 {
-	public Weingut(int ID, Date Oeffnungszeit_Von, Date Oeffnugszeit_Bis, Boolean Verkostungsmoeglichkeit)
+	public Weingut(int ID, Boolean BezugNurDurchHaendler, Date Oeffnungszeit_Von, Date Oeffnugszeit_Bis, Boolean Verkostungsmoeglichkeit)
 	{
 		setID(ID);
+		setBezugNurDurchHaendler(BezugNurDurchHaendler);
 		setOeffnungszeit_Von(Oeffnungszeit_Von);
 		setOeffnungszeit_Bis(Oeffnugszeit_Bis);
 		setVerkostungsmoeglichkeit(Verkostungsmoeglichkeit);
 	}
 	
 	protected Weingut(){};
+	
+	@OneToOne
+	private Charge Charge;
+	public void setCharge(Charge charge)
+	{
+		this.Charge = charge;
+	}
+	
+	public Charge getCharge()
+	{
+		return Charge;
+	}
 	
 	@Id
 	public int getID() {
@@ -27,6 +42,16 @@ public class Weingut
 	private int ID;
 	public void setID(int iD) {
 		ID = iD;
+	}
+	
+	private Boolean BezugNurDurchHaendler;
+	public void setBezugNurDurchHaendler(Boolean bezugNurDurchHaendler)
+	{
+		this.BezugNurDurchHaendler = bezugNurDurchHaendler;
+	}
+	public Boolean BezugNurDurchHaendler()
+	{
+		return BezugNurDurchHaendler;
 	}
 	
 	private Date Oeffnungszeit_Von;
