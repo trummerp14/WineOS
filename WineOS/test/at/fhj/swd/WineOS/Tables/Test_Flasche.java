@@ -47,7 +47,7 @@ public class Test_Flasche
 	 @Test public void create () 
 	 {
 		 transaction.begin ();
-		 Flasche Flasche_1 = new Flasche (id, Bezeichnung, Fuellmenge, Auspraegung, FK_Charge, 3, null);
+		 Flasche Flasche_1 = new Flasche (id, Bezeichnung, Fuellmenge, Auspraegung, FK_Charge, Stueck, null);
 		 assertNotNull (Flasche_1);
 		 manager.persist (Flasche_1);
 		 transaction.commit();

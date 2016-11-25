@@ -8,10 +8,12 @@ import javax.persistence.JoinColumn;
 	
 	public Flasche(int ID, String Bezeichnung, double Fuellmenge, String Auspraegung, int FK_Charge, int Stueck, Charge Charge)
 	{
+		setID(ID);
 		setBezeichnung(Bezeichnung);
 		setFuellmenge(Fuellmenge);
 		setStueck(Stueck);
 		setAuspraegung(Auspraegung);
+		setFK_Charge(FK_Charge);
 		setCharge(Charge);
 	}
 	
@@ -34,11 +36,10 @@ import javax.persistence.JoinColumn;
 	public int getID() {
 		return ID;
 	}
-	
-	//By the SQLServer the ID should be auto incremented by the Server
-	/*public void setID(int iD) {
-		ID = iD;
-	}*/
+	public void setID(int id)
+	{
+		this.ID = id;
+	}
 	
 	private String Bezeichnung;
 	public String getBezeichnung() {
@@ -72,6 +73,15 @@ import javax.persistence.JoinColumn;
 		Auspraegung = auspraegung;
 	}
 	
+	private int FK_Charge;
+	public int getKF_Charge() {
+		return FK_Charge;
+	}
+
+	public void setFK_Charge(int kF_Charge) {
+		FK_Charge = FK_Charge;
+	}
+
 	@Override
 	public String toString() {
 		return "Flasche [Charge=" + Charge + ", ID=" + ID + ", Bezeichnung=" + Bezeichnung + ", Fuellmenge=" + Fuellmenge
