@@ -4,6 +4,7 @@ import javax.persistence.Id;
 
 import java.util.Date;
 
+
 @Entity(name="dbo.Haendler")
 public class Haendler 
 {
@@ -29,7 +30,7 @@ public class Haendler
 		return Oeffnungszeit_Von;
 	}
 	public void setOeffnungszeit_Von(Date Oeffnungszeit_Von) {
-		Oeffnungszeit_Von = Oeffnungszeit_Von;
+		this.Oeffnungszeit_Von = Oeffnungszeit_Von;
 	}
 	
 	private Date Oeffnungszeit_Bis;
@@ -37,7 +38,7 @@ public class Haendler
 		return Oeffnungszeit_Bis;
 	}
 	public void setOeffnungszeit_Bis(Date Oeffnungszeit_Bis) {
-		Oeffnungszeit_Bis = Oeffnungszeit_Bis;
+		this.Oeffnungszeit_Bis = Oeffnungszeit_Bis;
 	}
 
 	@Override

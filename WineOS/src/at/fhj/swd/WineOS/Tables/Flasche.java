@@ -79,7 +79,7 @@ import javax.persistence.JoinColumn;
 	}
 
 	public void setFK_Charge(int kF_Charge) {
-		FK_Charge = FK_Charge;
+		FK_Charge = kF_Charge;
 	}
 
 	@Override
