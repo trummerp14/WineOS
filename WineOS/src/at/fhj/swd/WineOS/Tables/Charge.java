@@ -1,50 +1,86 @@
 package at.fhj.swd.WineOS.Tables;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-@Entity(name="dbo.Charge") 
-public class Charge 
-{
-	public Charge(int ID, String Bezeichnung, List<Flasche> Flasche)
-	{
-		setID(ID);
-		setBezeichnung(Bezeichnung);
-		setFlaschen(Flasche);
+@Entity(name = "dbo.Charge")
+public class Charge {
+	
+	@Id
+	private int id;
+	@OneToOne (mappedBy = "Charge") private Weingut weingut;
+	@OneToMany (mappedBy = "Charge") private Collection<Flasche> flaschen = new ArrayList<Flasche>();
+	private String bezeichnung;
+
+	public Charge(int id, String bezeichnung, Weingut weingut) {
+		setId(id);
+		setBezeichnung(bezeichnung);
+		setWeingut(weingut);
 	}
-	protected Charge(){};
+
+	public Charge(){};
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Weingut getWeingut() {
+		return weingut;
+	}
+
+	public void setWeingut(Weingut weingut) {
+		if(weingut == null)
+			throw new IllegalArgumentException();
 		
-	@Id private int ID;
-	public int getID() {
-		return ID;
+		this.weingut = weingut;
+		weingut.setCharge(this);
 	}
-	public void setID(int iD) {
-		this.ID = iD;
+
+	public Collection<Flasche> getFlaschen() {
+		return flaschen;
 	}
-	
-	@OneToMany(mappedBy="Charge")
-	private List<Flasche>Flaschen = new ArrayList<Flasche>();
-	public List<Flasche> getFlaschen() {
-		return Flaschen;
+
+	public void addFlasche(Flasche flasche) {
+		flaschen.add(flasche);
 	}
-	public void setFlaschen(List<Flasche> Flasche) {
-		Flaschen = Flasche;
-	}
-	
-	private String Bezeichnung;
+
 	public String getBezeichnung() {
-		return Bezeichnung;
+		return bezeichnung;
 	}
+
 	public void setBezeichnung(String bezeichnung) {
-		this.Bezeichnung = bezeichnung; 
+		this.bezeichnung = bezeichnung;
 	}
-	
+
 	@Override
-	public String toString() {
-		return "Charge [ID=" + ID + ", Bezeichnung=" + Bezeichnung + "]";
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Charge other = (Charge) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
 }

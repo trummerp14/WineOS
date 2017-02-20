@@ -1,4 +1,4 @@
-USE [WINE_OS]
+USE [WineOS]
 GO
 
 /****** Object:  Table [dbo].[Weingut]    Script Date: 16.01.2017 21:28:42 ******/
@@ -10,10 +10,10 @@ GO
 
 CREATE TABLE [dbo].[Weingut](
 	[ID] [int] NOT NULL,
-	[Bezug_Nur_Durchhaendler] [int] NULL,
-	[Oeffnungszeit_Von] [date] NULL,
-	[Oeffnungszeit_Bis] [date] NULL,
-	[Verkostungsmoeglichkeit] [int] NULL
+	[Adresse] [varchar](max) NULL,
+	[Ort] [varchar](max) NULL,
+	[PLZ] [int] NULL,
+	[Charge_ID] [int] NULL
 ) ON [PRIMARY]
 
 GO

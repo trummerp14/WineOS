@@ -1,7 +1,7 @@
-USE [WINE_OS]
+USE [WineOS]
 GO
 
-/****** Object:  Table [dbo].[Charge]    Script Date: 16.01.2017 21:28:21 ******/
+/****** Object:  Table [dbo].[Charge]    Script Date: 19.02.2017 19:29:48 ******/
 SET ANSI_NULLS ON
 GO
 

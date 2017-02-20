@@ -9,14 +9,15 @@
      <class>at.fhj.swd.WineOS.Tables.Charge</class>
      <class>at.fhj.swd.WineOS.Tables.Flasche</class>
      <class>at.fhj.swd.WineOS.Tables.Haendler</class>
+     <class>at.fhj.swd.WineOS.Tables.Weingut</class>
      <class>at.fhj.swd.WineOS.Tables.Mapping_Flasche_Haendler</class>
      <properties>
        <property name="javax.persistence.jdbc.driver"
                  value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
        <property name="javax.persistence.jdbc.url"
- 				 value="jdbc:sqlserver://localhost:1433;databaseName=WEINVERWALTUNG"/>
-       <property name="javax.persistence.jdbc.user" value="ptrummer"/>
-       <property name="javax.persistence.jdbc.password" value="SWD15!"/>
+ 				 value="jdbc:sqlserver://localhost:1433;databaseName=WineOS"/>
+       <property name="javax.persistence.jdbc.user" value="wineos"/>
+       <property name="javax.persistence.jdbc.password" value="wineos"/>
      </properties>
    </persistence-unit>
 </persistence>
