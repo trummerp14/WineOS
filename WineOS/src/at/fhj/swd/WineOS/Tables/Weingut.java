@@ -1,16 +1,20 @@
 package at.fhj.swd.WineOS.Tables;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity(name = "dbo.Weingut")
 public class Weingut {
 
 	@Id private int id;
-	@OneToOne 
-	@JoinColumn(name = "Charge_id") private Charge Charge;
+	@OneToOne private Weinbereitungsanlage weinbereitungsanlage;
+	@OneToMany (mappedBy = "") private Collection<Charge> chargen = new ArrayList<Charge>();
 	private String adresse;
 	private String ort;
 	private int plz;
@@ -56,12 +60,29 @@ public class Weingut {
 		this.plz = plz;
 	}
 
-	public void setCharge(Charge charge) {
-		this.Charge = charge;
+	public void addCharge(Charge charge) {
+		if(charge == null)
+			throw new IllegalArgumentException();
+		chargen.add(charge);
+		charge.setWeingut(this);
+	}
+	
+	public Collection<Charge> getChargen(){
+		return chargen;
 	}
 
-	public Charge getCharge() {
-		return Charge;
+	public Charge getCharge(int index) {
+		List<Charge> list = null;
+		if(chargen instanceof List)
+			list = (List<Charge>) chargen;
+		return list.get(index);
 	}
 
+	public void setWeinbereitungsanlage(Weinbereitungsanlage wb){
+		if(wb == null)
+			throw new IllegalArgumentException();
+		this.weinbereitungsanlage = wb;
+		wb.setWeingut(this);
+	}
+	
 }

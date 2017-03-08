@@ -5,15 +5,15 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity(name = "dbo.Charge")
 public class Charge {
 	
 	@Id
 	private int id;
-	@OneToOne (mappedBy = "Charge") private Weingut weingut;
+	@ManyToOne private Weingut weingut;
 	@OneToMany (mappedBy = "Charge") private Collection<Flasche> flaschen = new ArrayList<Flasche>();
 	private String bezeichnung;
 
@@ -42,7 +42,7 @@ public class Charge {
 			throw new IllegalArgumentException();
 		
 		this.weingut = weingut;
-		weingut.setCharge(this);
+		weingut.addCharge(this);
 	}
 
 	public Collection<Flasche> getFlaschen() {

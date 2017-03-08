@@ -31,7 +31,7 @@ public class TestWeingut extends AbstractTest{
 		weingut = new Weingut(1, "Teststraße 1", "Testdorf", 8600);
 		charge = new Charge(1, "Charge1", weingut);
 		manager.persist(charge);
-		weingut.setCharge(charge);
+		weingut.addCharge(charge);
 	}
 	 
 }

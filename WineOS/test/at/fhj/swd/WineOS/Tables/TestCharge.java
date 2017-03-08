@@ -21,7 +21,7 @@ public class TestCharge extends AbstractTest {
 		createCharge();
 		Assert.assertEquals(1, charge.getId());
 		Assert.assertEquals("Charge1", charge.getBezeichnung());
-		weingut.setCharge(charge);
+		weingut.addCharge(charge);
 		Assert.assertEquals(weingut, charge.getWeingut());
 	}
 	
