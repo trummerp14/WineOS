@@ -4,17 +4,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
-@Entity(name = "dbo.Weingut")
+@Entity
+@Table (name = "dbo.Weingut")
 public class Weingut {
 
+	// primary key
 	@Id private int id;
-	@OneToOne private Weinbereitungsanlage weinbereitungsanlage;
-	@OneToMany (mappedBy = "") private Collection<Charge> chargen = new ArrayList<Charge>();
+	
+	// Beziehung zu Fertigungsanlage. 1:1 Source ist Weingut
+	@OneToOne(mappedBy = "weingut")private Fertigungsanlage anlage;
+	
+	// Beziehugn zu Charge 1:M Source is Weingut
+	@OneToMany (mappedBy = "Weingut") private Collection<Charge> chargen = new ArrayList<Charge>();
+	
 	private String adresse;
 	private String ort;
 	private int plz;
@@ -64,7 +68,7 @@ public class Weingut {
 		if(charge == null)
 			throw new IllegalArgumentException();
 		chargen.add(charge);
-		charge.setWeingut(this);
+		//charge.setWeingut(this);
 	}
 	
 	public Collection<Charge> getChargen(){
@@ -78,10 +82,10 @@ public class Weingut {
 		return list.get(index);
 	}
 
-	public void setWeinbereitungsanlage(Weinbereitungsanlage wb){
+	public void setWeinbereitungsanlage(Fertigungsanlage wb){
 		if(wb == null)
 			throw new IllegalArgumentException();
-		this.weinbereitungsanlage = wb;
+		this.anlage = wb;
 		wb.setWeingut(this);
 	}
 	

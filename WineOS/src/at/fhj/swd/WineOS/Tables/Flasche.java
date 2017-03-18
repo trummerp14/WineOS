@@ -1,26 +1,27 @@
 package at.fhj.swd.WineOS.Tables;
 
-import javax.persistence.ManyToOne;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 @Entity(name = "dbo.Flasche")
 public class Flasche {
-
+	
+	//primary Key
 	@Id private int ID;
-	private String Bezeichnung;
+	
+	// Beziehung zwischen Charge und Flaschen 1:n Source ist Charge
 	@ManyToOne 
 	@JoinColumn (name = "FK_Charge") private Charge Charge;
+	
+	// Beziehung zwischen Händler und Flasche m:n Source ist Händler
+	@ManyToMany (mappedBy = "flaschen") private Collection<Haendler> händler = new ArrayList<Haendler>();
+
+	private String Bezeichnung;
 	private String Auspraegung;
 	private double Fuellmenge;
-	@ManyToMany private Collection<Haendler> händler = new ArrayList<Haendler>();
-
+	
 	public Flasche(int ID, String Bezeichnung, double Fuellmenge, String Auspraegung, int Stueck, Charge Charge) {
 		setID(ID);
 		setBezeichnung(Bezeichnung);

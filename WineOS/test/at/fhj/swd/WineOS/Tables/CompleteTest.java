@@ -2,10 +2,14 @@ package at.fhj.swd.WineOS.Tables;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -14,12 +18,14 @@ import org.junit.Test;
 
 public class CompleteTest {
 
+	String sqlScript = "";
+	
 	Weingut weingut;
 	Charge charge;
 	Flasche flasche;
 	Haendler händler;
 	
-	static final String persistenceUnitName = "WineOS";
+	static final String persistenceUnitName = "WINE_OS";
 	static EntityManagerFactory factory;
 	static EntityManager manager;
 	static EntityTransaction transaction;
@@ -36,6 +42,7 @@ public class CompleteTest {
 		assertNotNull (factory);
 		manager = factory.createEntityManager();
 		assertNotNull (manager);
+		
 		transaction = manager.getTransaction();
 		transaction.begin();
 		manager.persist(weingut);
@@ -56,14 +63,24 @@ public class CompleteTest {
 	
 	@After
 	public void teardown(){
+		
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("./sql/SQLQueryDeleteAllData.sql"));
+			String line;
+			while((line = reader.readLine()) != null){
+				sqlScript += line;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		System.out.println(sqlScript);
+		
 		transaction = manager.getTransaction();
 		transaction.begin();
-		manager.createNativeQuery("DELETE FROM dbo.Weingut Where id = " + weingut.getId()).executeUpdate();
-		manager.createNativeQuery("DELETE FROM dbo.Haendler_Flaschen Where  FK_Flasche = 1").executeUpdate();
-		manager.createNativeQuery("DELETE FROM dbo.Haendler Where id = " + händler.getID()).executeUpdate();
-		manager.createNativeQuery("DELETE FROM dbo.Flasche_Haendler Where Flasche_ID = 1").executeUpdate();
-		manager.createNativeQuery("DELETE FROM dbo.Flasche Where id = " + flasche.getID()).executeUpdate();
-		manager.createNativeQuery("DELETE FROM dbo.charge Where id = " + charge.getId()).executeUpdate();
+		manager.createNativeQuery("Delete  FROM TABLE Where PRIMARY_KEY_ is Not NULL;");
+		Query q = manager.createNativeQuery(sqlScript);
+		q.executeUpdate();
 		transaction.commit();
 		manager.close();
 	}

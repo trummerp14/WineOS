@@ -3,21 +3,25 @@ package at.fhj.swd.WineOS.Tables;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
-public class Weinbereitungsanlage {
+@Entity
+@Table (name = "dbo.Fertigungsanlage")
+public class Fertigungsanlage {
 
+	//primary key
 	@Id private int id;
+	
+	// Beziehung zu Weingut 1:1 Source ist Weingut
+	@OneToOne /*(mappedBy = "anlage") @JoinColumn(name = "FK_Fertigungsanlage_Weingut")*/ private Weingut weingut;
+	
 	private String bezeichnung;
 	private List<String> bestandteile = new ArrayList<String>();
-	@OneToOne 
-	@JoinColumn(name = "Weingut_id") private Weingut weingut;
+	private int volume;
 	
-	public Weinbereitungsanlage(){}
+	public Fertigungsanlage(){}
 	
-	public Weinbereitungsanlage(int id, String bezeichnung) {
+	public Fertigungsanlage(int id, String bezeichnung) {
 		setBezeichnung(bezeichnung);
 		setId(id);
 	}
@@ -58,6 +62,17 @@ public class Weinbereitungsanlage {
 		this.weingut = wg;
 	}
 	
+	public void setVolume(int i){
+		if(i <= 0)
+			throw new IllegalArgumentException();
+		this.volume = i;
+	}
+	
+	public int getVolume(){
+		return volume;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -75,7 +90,7 @@ public class Weinbereitungsanlage {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Weinbereitungsanlage other = (Weinbereitungsanlage) obj;
+		Fertigungsanlage other = (Fertigungsanlage) obj;
 		if (bestandteile == null) {
 			if (other.bestandteile != null)
 				return false;

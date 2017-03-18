@@ -6,19 +6,19 @@ import org.junit.Test;
 
 
 
-public class TestWeinbereitungsanlage {
+public class TestFertigungsanlage {
 
-	Weinbereitungsanlage wb;
+	Fertigungsanlage wb;
 	
 	@Before
 	public void setup(){
-		wb = new Weinbereitungsanlage(1, "Gesamtanlage");
+		wb = new Fertigungsanlage(1, "Gesamtanlage");
 	}
 	
 	
 	@Test
 	public void testConstructor(){
-		new Weinbereitungsanlage(1, "Gesamtanlage");
+		new Fertigungsanlage(1, "Gesamtanlage");
 	}
 	
 	@Test

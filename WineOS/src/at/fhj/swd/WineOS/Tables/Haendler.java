@@ -2,25 +2,26 @@ package at.fhj.swd.WineOS.Tables;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
-@Entity(name="dbo.Haendler")
+@Entity
+@Table(name="dbo.Haendler")
 public class Haendler 
 {
+	// Primary Key
 	@Id private int ID;
+
+	//Beziehung zwischen Flasche und Händler m:n Händler ist Source
+	@ManyToMany 
+	@JoinTable(name = "Flasche_Haendler",
+			joinColumns = @JoinColumn (name="FK_Haendler"), 
+			inverseJoinColumns = @JoinColumn (name="FK_Flasche"))
+			private Collection<Flasche> flaschen = new ArrayList<Flasche>();
+	
 	private String name;
 	private String adresse;
 	private String ort;
 	private int plz;
-	@ManyToMany 
-	@JoinTable(name = "Haendler_Flaschen",
-			joinColumns = @JoinColumn (name="FK_Haendler"), 
-			inverseJoinColumns = @JoinColumn (name="FK_Flasche"))
-			private Collection<Flasche> flaschen = new ArrayList<Flasche>();
 	
 	public Haendler(int id, String name, String adresse, String ort, int plz)
 	{

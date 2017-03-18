@@ -1,7 +1,7 @@
-USE [WineOS]
+USE [WINE_OS]
 GO
 
-/****** Object:  Table [dbo].[Flasche]    Script Date: 19.02.2017 19:30:16 ******/
+/****** Object:  Table [dbo].[Flasche]    Script Date: 18.03.2017 15:57:45 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -29,18 +29,20 @@ GO
 SET ANSI_PADDING OFF
 GO
 
+ALTER TABLE [dbo].[Flasche]  WITH CHECK ADD  CONSTRAINT [FK_Flasche_Charge] FOREIGN KEY([FK_Charge])
+REFERENCES [dbo].[Charge] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[Flasche] CHECK CONSTRAINT [FK_Flasche_Charge]
+GO
+
 ALTER TABLE [dbo].[Flasche]  WITH CHECK ADD  CONSTRAINT [FK_Flasche_Flasche] FOREIGN KEY([ID])
 REFERENCES [dbo].[Flasche] ([ID])
 GO
 
 ALTER TABLE [dbo].[Flasche] CHECK CONSTRAINT [FK_Flasche_Flasche]
-GO
-
-ALTER TABLE [dbo].[Flasche]  WITH CHECK ADD  CONSTRAINT [Flasche_Charge] FOREIGN KEY([FK_Charge])
-REFERENCES [dbo].[Charge] ([ID])
-GO
-
-ALTER TABLE [dbo].[Flasche] CHECK CONSTRAINT [Flasche_Charge]
 GO
 
 

@@ -12,7 +12,7 @@ import org.junit.BeforeClass;
 
 public abstract class AbstractTest {
 
-	static final String persistenceUnitName = "WineOS";
+	static final String persistenceUnitName = "WINE_OS";
 	static EntityManagerFactory factory;
 	static EntityManager manager;
 	static EntityTransaction transaction;

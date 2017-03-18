@@ -4,19 +4,20 @@
  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
  http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
  
-   <persistence-unit name="WineOS">
+   <persistence-unit name="WINE_OS">
      <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
      <class>at.fhj.swd.WineOS.Tables.Charge</class>
      <class>at.fhj.swd.WineOS.Tables.Flasche</class>
      <class>at.fhj.swd.WineOS.Tables.Haendler</class>
      <class>at.fhj.swd.WineOS.Tables.Weingut</class>
      <class>at.fhj.swd.WineOS.Tables.Mapping_Flasche_Haendler</class>
+     <class>at.fhj.swd.WineOS.Tables.Fertigungsanlage</class>
      <properties>
        <property name="javax.persistence.jdbc.driver"
                  value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
        <property name="javax.persistence.jdbc.url"
- 				 value="jdbc:sqlserver://localhost:1433;databaseName=WineOS"/>
-       <property name="javax.persistence.jdbc.user" value="wineos"/>
+ 				 value="jdbc:sqlserver://localhost:1433;databaseName=WINE_OS"/>
+       <property name="javax.persistence.jdbc.user" value="chofer"/>
        <property name="javax.persistence.jdbc.password" value="wineos"/>
      </properties>
    </persistence-unit>

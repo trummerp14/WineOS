@@ -1,7 +1,7 @@
-USE [WineOS]
+USE [WINE_OS]
 GO
 
-/****** Object:  Table [dbo].[Weingut]    Script Date: 19.02.2017 19:30:53 ******/
+/****** Object:  Table [dbo].[Haendler]    Script Date: 18.03.2017 15:57:10 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,28 +11,21 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [dbo].[Weingut](
-	[id] [int] NOT NULL,
+CREATE TABLE [dbo].[Haendler](
+	[ID] [int] NOT NULL,
 	[Adresse] [varchar](max) NULL,
+	[Name] [varchar](max) NULL,
 	[Ort] [varchar](max) NULL,
 	[PLZ] [int] NULL,
-	[Charge_id] [int] NOT NULL,
- CONSTRAINT [PK_Weingut] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_Haendler] PRIMARY KEY CLUSTERED 
 (
-	[id] ASC
+	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
 
 SET ANSI_PADDING OFF
-GO
-
-ALTER TABLE [dbo].[Weingut]  WITH CHECK ADD  CONSTRAINT [Weingut_Charge] FOREIGN KEY([id])
-REFERENCES [dbo].[Charge] ([ID])
-GO
-
-ALTER TABLE [dbo].[Weingut] CHECK CONSTRAINT [Weingut_Charge]
 GO
 
 
