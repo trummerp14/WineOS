@@ -26,7 +26,6 @@ public class TestFlasche extends AbstractTest {
 		Assert.assertNotNull(flasche1);
 		transaction.begin();
 		flasche1.setBezeichnung("Weiﬂburgunder");
-		;
 		transaction.commit();
 
 		teardown();
@@ -34,6 +33,8 @@ public class TestFlasche extends AbstractTest {
 
 		flasche1 = manager.find(Flasche.class, 1);
 		Assert.assertEquals("Weiﬂburgunder", flasche1.getBezeichnung());
+		Assert.assertTrue(charge.equals(flasche1.getCharge()));
+		Assert.assertTrue(weingut.equals(flasche1.getCharge().getWeingut()));
 	}
 
 	@Test

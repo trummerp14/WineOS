@@ -88,7 +88,7 @@ public class Flasche {
 		return händler;
 	}
 
-	void addHaendler(Haendler händler) {
+	public void addHaendler(Haendler händler) {
 		this.händler.add(händler);
 	}
 	

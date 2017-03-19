@@ -28,6 +28,8 @@ public class Charge {
 	}
 
 	public void setId(int id) {
+		if(id <= 0)
+			throw new IllegalArgumentException();
 		this.id = id;
 	}
 
@@ -43,11 +45,19 @@ public class Charge {
 		weingut.addCharge(this);
 	}
 
-	public Collection<Flasche> getFlaschen() {
-		return flaschen;
+	public ArrayList<Flasche> getFlaschen() {
+		ArrayList<Flasche> res;
+		try {
+			res = (ArrayList<Flasche>) flaschen;
+		} catch (Exception e) {
+			throw new ClassCastException();
+		}
+		return res;
 	}
 
 	public void addFlasche(Flasche flasche) {
+		if(flasche == null)
+			throw new IllegalArgumentException();
 		flaschen.add(flasche);
 	}
 
@@ -56,6 +66,8 @@ public class Charge {
 	}
 
 	public void setBezeichnung(String bezeichnung) {
+		if(bezeichnung == null)
+			throw new IllegalArgumentException();
 		this.bezeichnung = bezeichnung;
 	}
 

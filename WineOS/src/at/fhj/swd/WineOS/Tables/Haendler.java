@@ -38,8 +38,10 @@ public class Haendler
 		return ID;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setID(int id) {
+		if(id <= 0)
+			throw new IllegalArgumentException();
+		this.ID = id;
 	}
 
 	public String getName() {
@@ -47,6 +49,8 @@ public class Haendler
 	}
 
 	public void setName(String name) {
+		if(name == null)
+			throw new IllegalArgumentException();
 		this.name = name;
 	}
 
@@ -55,6 +59,8 @@ public class Haendler
 	}
 
 	public void setAdresse(String adresse) {
+		if(adresse == null)
+			throw new IllegalArgumentException();
 		this.adresse = adresse;
 	}
 
@@ -63,6 +69,8 @@ public class Haendler
 	}
 
 	public void setOrt(String ort) {
+		if(ort == null)
+			throw new IllegalArgumentException();
 		this.ort = ort;
 	}
 
@@ -71,6 +79,8 @@ public class Haendler
 	}
 
 	public void setPlz(int plz) {
+		if(plz <= 999)
+			throw new IllegalArgumentException();
 		this.plz = plz;
 	}
 

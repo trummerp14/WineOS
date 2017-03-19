@@ -30,20 +30,18 @@ public class TestWeingut extends AbstractTest {
 	
 	@Test
 	public void modify() {
-		Weingut weingut = manager.find(Weingut.class, 1);
-		Assert.assertNotNull(weingut);
+		Weingut weingut1 = manager.find(Weingut.class, 1);
+		Assert.assertNotNull(weingut1);
 		transaction.begin();
-		weingut.setAdresse("Road to Hell");
-		createAnlage();
-		manager.persist(anlage);
-		weingut.setAnlage(anlage);
+		weingut1.setAdresse("Road to Hell");
 		transaction.commit();
 		
 		teardown();
 		setup();
 		
-		weingut = manager.find(Weingut.class, 1);
-		Assert.assertEquals("Road to Hell", weingut.getAdresse());
+		weingut1 = manager.find(Weingut.class, 1);
+		Assert.assertEquals("Road to Hell", weingut1.getAdresse());
+		Assert.assertTrue(weingut.equals(weingut1));
 	}
 	
 	@Test

@@ -32,6 +32,7 @@ public class TestHaendler extends AbstractTest {
 		
 		händler1 = manager.find(Haendler.class, 1);
 		Assert.assertEquals("Road 66", händler1.getAdresse());
+		Assert.assertTrue(händler.equals(händler1));
 	}
 	
 	@Test
