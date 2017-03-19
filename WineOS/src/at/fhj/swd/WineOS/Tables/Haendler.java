@@ -78,7 +78,7 @@ public class Haendler
 		return flaschen;
 	}
 
-	public void addFlaschen(Flasche flasche) {
+	public void addFlasche(Flasche flasche) {
 		this.flaschen.add(flasche);
 		flasche.addHaendler(this);
 	}

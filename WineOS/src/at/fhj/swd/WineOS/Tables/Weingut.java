@@ -14,10 +14,11 @@ public class Weingut {
 	@Id private int id;
 	
 	// Beziehung zu Fertigungsanlage. 1:1 Source ist Weingut
-	@OneToOne(mappedBy = "weingut")private Fertigungsanlage anlage;
+	@OneToOne (mappedBy = "weingut") 
+	@JoinColumn(name = "FK_Ferigungsanlage_Weingut")private Fertigungsanlage anlage;
 	
 	// Beziehugn zu Charge 1:M Source is Weingut
-	@OneToMany (mappedBy = "Weingut") private Collection<Charge> chargen = new ArrayList<Charge>();
+	@OneToMany(mappedBy = "weingut") private Collection<Charge> chargen = new ArrayList<Charge>();
 	
 	private String adresse;
 	private String ort;
@@ -82,11 +83,11 @@ public class Weingut {
 		return list.get(index);
 	}
 
-	public void setWeinbereitungsanlage(Fertigungsanlage wb){
+	public void setAnlage(Fertigungsanlage wb){
 		if(wb == null)
 			throw new IllegalArgumentException();
 		this.anlage = wb;
-		wb.setWeingut(this);
+		//wb.setWeingut(this);
 	}
 	
 }

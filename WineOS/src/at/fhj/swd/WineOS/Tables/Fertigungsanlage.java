@@ -13,17 +13,18 @@ public class Fertigungsanlage {
 	@Id private int id;
 	
 	// Beziehung zu Weingut 1:1 Source ist Weingut
-	@OneToOne /*(mappedBy = "anlage") @JoinColumn(name = "FK_Fertigungsanlage_Weingut")*/ private Weingut weingut;
+	@OneToOne private Weingut weingut;
 	
 	private String bezeichnung;
 	private List<String> bestandteile = new ArrayList<String>();
-	private int volume;
+	private int volumen;
 	
 	public Fertigungsanlage(){}
 	
-	public Fertigungsanlage(int id, String bezeichnung) {
+	public Fertigungsanlage(int id, String bezeichnung, int volumen) {
 		setBezeichnung(bezeichnung);
 		setId(id);
+		setVolume(volumen);
 	}
 	
 	public int getId() {
@@ -60,16 +61,17 @@ public class Fertigungsanlage {
 		if(wg == null)
 			throw new IllegalArgumentException();
 		this.weingut = wg;
+		this.weingut.setAnlage(this);
 	}
 	
 	public void setVolume(int i){
 		if(i <= 0)
 			throw new IllegalArgumentException();
-		this.volume = i;
+		this.volumen = i;
 	}
 	
 	public int getVolume(){
-		return volume;
+		return volumen;
 	}
 	
 	

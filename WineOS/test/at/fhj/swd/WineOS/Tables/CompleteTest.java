@@ -19,63 +19,69 @@ import org.junit.Test;
 public class CompleteTest {
 
 	String sqlScript = "";
-	
-	Weingut weingut;
-	Charge charge;
-	Flasche flasche;
-	Haendler h‰ndler;
-	
+
+	static Weingut weingut;
+	static Charge charge;
+	static Flasche flasche;
+	static Haendler h‰ndler;
+	static Fertigungsanlage anlage;
+
 	static final String persistenceUnitName = "WINE_OS";
 	static EntityManagerFactory factory;
 	static EntityManager manager;
 	static EntityTransaction transaction;
-	
+
 	@Before
-	public void setup(){
+	public void setup() {
 		weingut = new Weingut(1, "Teststraﬂe", "Testdorf", 5654);
+		anlage = new Fertigungsanlage(1, "Anlage 1", 2000);
+		anlage.setWeingut(weingut);
 		charge = new Charge(1, "Charge1", weingut);
-		flasche = new Flasche(1,"Burgunder", 0.75, "Kork", 5, charge);
+		flasche = new Flasche(1, "Burgunder", 0.75, "Kork", 5, charge);
 		h‰ndler = new Haendler(1, "Bundesstraﬂe 17", "Hofer KG", "Lorenzen", 6584);
-		h‰ndler.addFlaschen(flasche);
-		 
+		h‰ndler.addFlasche(flasche);
+
 		factory = Persistence.createEntityManagerFactory(persistenceUnitName);
-		assertNotNull (factory);
+		assertNotNull(factory);
 		manager = factory.createEntityManager();
-		assertNotNull (manager);
-		
+		assertNotNull(manager);
+
 		transaction = manager.getTransaction();
 		transaction.begin();
 		manager.persist(weingut);
 		manager.persist(h‰ndler);
 		manager.persist(charge);
 		manager.persist(flasche);
+		manager.persist(anlage);
 		transaction.commit();
 		manager.clear();
 	}
-	
+
 	@Test
-	public void testPersist(){
+	public void testPersist() {
 		Assert.assertEquals(weingut.getAdresse(), manager.find(Weingut.class, 1).getAdresse());
 		Assert.assertEquals(charge, manager.find(Charge.class, 1));
 		Assert.assertEquals(flasche, manager.find(Flasche.class, 1));
 		Assert.assertEquals(h‰ndler, manager.find(Haendler.class, 1));
+		Assert.assertEquals(anlage.getBezeichnung(), manager.find(Fertigungsanlage.class, 1).getBezeichnung());
 	}
-	
+
 	@After
-	public void teardown(){
-		
+	public void teardown() {
+
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader("./sql/SQLQueryDeleteAllData.sql"));
 			String line;
-			while((line = reader.readLine()) != null){
+			while ((line = reader.readLine()) != null) {
 				sqlScript += line;
 			}
+			reader.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		System.out.println(sqlScript);
-		
+
 		transaction = manager.getTransaction();
 		transaction.begin();
 		manager.createNativeQuery("Delete  FROM TABLE Where PRIMARY_KEY_ is Not NULL;");
@@ -84,5 +90,5 @@ public class CompleteTest {
 		transaction.commit();
 		manager.close();
 	}
-	
+
 }
