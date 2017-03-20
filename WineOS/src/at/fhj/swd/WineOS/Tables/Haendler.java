@@ -25,7 +25,7 @@ public class Haendler
 	
 	public Haendler(int id, String name, String adresse, String ort, int plz)
 	{
-		setID(id);
+		setId(id);
 		setName(name);
 		setAdresse(adresse);
 		setOrt(ort);
@@ -34,11 +34,11 @@ public class Haendler
 	
 	public Haendler(){};
 
-	public int getID() {
+	public int getId() {
 		return ID;
 	}
 
-	public void setID(int id) {
+	public void setId(int id) {
 		if(id <= 0)
 			throw new IllegalArgumentException();
 		this.ID = id;

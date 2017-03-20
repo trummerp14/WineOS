@@ -8,11 +8,6 @@ public class TestWeingut extends AbstractTest {
 	@Test
 	public void testConstructor() {
 		createWeingut();
-	}
-
-	@Test
-	public void testId() {
-		createWeingut();
 		Assert.assertEquals(1, weingut.getId());
 		Assert.assertEquals("Teststraße 1", weingut.getAdresse());
 		Assert.assertEquals("Testdorf", weingut.getOrt());

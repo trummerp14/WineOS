@@ -13,7 +13,7 @@ public class Flasche {
 	
 	// Beziehung zwischen Charge und Flaschen 1:n Source ist Charge
 	@ManyToOne 
-	@JoinColumn (name = "FK_Charge") private Charge Charge;
+	@JoinColumn (name = "FK_Charge") private Charge charge;
 	
 	// Beziehung zwischen Händler und Flasche m:n Source ist Händler
 	@ManyToMany (mappedBy = "flaschen") private Collection<Haendler> händler = new ArrayList<Haendler>();
@@ -22,31 +22,31 @@ public class Flasche {
 	private String Auspraegung;
 	private double Fuellmenge;
 	
-	public Flasche(int ID, String Bezeichnung, double Fuellmenge, String Auspraegung, int Stueck, Charge Charge) {
-		setID(ID);
+	public Flasche(int Id, String Bezeichnung, double Fuellmenge, String Auspraegung, int Stueck, Charge charge) {
+		setId(Id);
 		setBezeichnung(Bezeichnung);
 		setFuellmenge(Fuellmenge);
 		setStueck(Stueck);
 		setAuspraegung(Auspraegung);
-		setCharge(Charge);
+		setCharge(charge);
 	}
 	
 	public Flasche(){};
 
 	public void setCharge(Charge charge) {
-		this.Charge = charge;
-		Charge.addFlasche(this);
+		this.charge = charge;
+		this.charge.addFlasche(this);
 	}
 
 	public Charge getCharge() {
-		return Charge;
+		return charge;
 	}
 
-	public int getID() {
+	public int getId() {
 		return ID;
 	}
 
-	public void setID(int id) {
+	public void setId(int id) {
 		this.ID = id;
 	}
 
@@ -88,8 +88,8 @@ public class Flasche {
 		return händler;
 	}
 
-	public void addHaendler(Haendler händler) {
-		this.händler.add(händler);
+	void addHaendler(Haendler händler) {
+			this.händler.add(händler);
 	}
 	
 	
@@ -118,7 +118,7 @@ public class Flasche {
 
 	@Override
 	public String toString() {
-		return "Flasche [Charge=" + Charge + ", ID=" + ID + ", Bezeichnung=" + Bezeichnung + ", Fuellmenge="
+		return "Flasche [Charge=" + charge + ", ID=" + ID + ", Bezeichnung=" + Bezeichnung + ", Fuellmenge="
 				+ Fuellmenge + ", Stueck=" + Stueck + ", Auspruegung=" + Auspraegung + "]";
 	}
 }

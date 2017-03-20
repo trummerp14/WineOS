@@ -61,7 +61,7 @@ public class TestCharge extends AbstractTest {
 		Assert.assertEquals(weingut.getAdresse(), charge1.getWeingut().getAdresse());
 		
 		charge1.addFlasche(new Flasche(2, "Weiﬂburgunder", 0.75, "Kork", 1, new Charge()));
-		Assert.assertEquals(2, (charge1.getFlaschen().get(0).getID()));
+		Assert.assertEquals(2, (charge1.getFlaschen().get(0).getId()));
 	}
 
 	@Test
