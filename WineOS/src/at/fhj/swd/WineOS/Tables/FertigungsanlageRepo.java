@@ -48,8 +48,8 @@ public class FertigungsanlageRepo {
 	/*
 	 * Factory methods
 	 */
-	public Fertigungsanlage createFertigungsanlage(int id, String bezeichnung, int volumen) {
-		Fertigungsanlage f = new Fertigungsanlage(id, bezeichnung, volumen);
+	public Fertigungsanlage createFertigungsanlage(int id, String bezeichnung, int volumen, Weingut weingut) {
+		Fertigungsanlage f = new Fertigungsanlage(id, bezeichnung, volumen, weingut);
 		insert(f);
 		return f;
 	}

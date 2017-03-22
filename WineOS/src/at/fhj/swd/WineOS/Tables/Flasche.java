@@ -19,18 +19,17 @@ public class Flasche {
 
 	// Beziehung zwischen Händler und Flasche m:n Source ist Händler
 	@ManyToMany(mappedBy = "flaschen")
-	private Collection<Haendler> händler = new ArrayList<Haendler>();
+	private Collection<Haendler> haendler = new ArrayList<Haendler>();
 
 	private String Bezeichnung;
 	private String Auspraegung;
 	private double Fuellmenge;
 	private int Stueck;
 
-	public Flasche(int Id, String Bezeichnung, double Fuellmenge, String Auspraegung, int Stueck, Charge charge) {
+	public Flasche(int Id, String Bezeichnung, double Fuellmenge, String Auspraegung, Charge charge) {
 		setId(Id);
 		setBezeichnung(Bezeichnung);
 		setFuellmenge(Fuellmenge);
-		setStueck(Stueck);
 		setAuspraegung(Auspraegung);
 		setCharge(charge);
 	}
@@ -77,16 +76,6 @@ public class Flasche {
 		return Fuellmenge;
 	}
 
-	public void setStueck(int stueck) {
-		if (stueck <= 0)
-			throw new IllegalArgumentException();
-		Stueck = stueck;
-	}
-
-	public int getStueck() {
-		return Stueck;
-	}
-
 	public void setAuspraegung(String auspraegung) {
 		if (auspraegung == null)
 			throw new IllegalArgumentException();
@@ -97,14 +86,14 @@ public class Flasche {
 		return Auspraegung;
 	}
 
-	void addHaendler(Haendler händler) {
-		if(händler == null)
+	void addHaendler(Haendler haendler) {
+		if(haendler == null)
 			throw new IllegalArgumentException();
-		this.händler.add(händler);
+		this.haendler.add(haendler);
 	}
 
 	public Collection<Haendler> getHaendler() {
-		return händler;
+		return haendler;
 	}
 
 	@Override

@@ -64,13 +64,12 @@ public class TestFlasche extends AbstractTest {
 		createHaendler();
 		händler.addFlasche(flasche);
 		
-		//	flasche = new Flasche(1, "Veltliner", 0.75, "kork", 1, charge);
+		//	flasche = new Flasche(1, "Veltliner", 0.75, "kork", charge);
 		
 		Assert.assertEquals(1, flasche.getId());
 		Assert.assertEquals("Veltliner", flasche.getBezeichnung());
 		Assert.assertEquals(0.75, flasche.getFuellmenge(), 0.001);
 		Assert.assertEquals("kork", flasche.getAuspraegung());
-		Assert.assertEquals(1, flasche.getStueck());
 		Assert.assertTrue(charge.equals(flasche.getCharge()));
 		Assert.assertTrue(händler.equals(((ArrayList<Haendler>)flasche.getHaendler()).get(0)));
 	}

@@ -13,7 +13,7 @@ public class Fertigungsanlage {
 	@Id private int id;
 	
 	// Beziehung zu Weingut 1:1 Source ist Weingut
-	@OneToOne private Weingut weingut;
+	@OneToOne @JoinColumn(name = "FK_Weingut") private Weingut weingut;
 	
 	private String bezeichnung;
 	private List<String> bestandteile = new ArrayList<String>();
@@ -21,10 +21,11 @@ public class Fertigungsanlage {
 	
 	public Fertigungsanlage(){}
 	
-	public Fertigungsanlage(int id, String bezeichnung, int volumen) {
+	public Fertigungsanlage(int id, String bezeichnung, int volumen, Weingut wg) {
 		setBezeichnung(bezeichnung);
 		setId(id);
 		setVolume(volumen);
+		setWeingut(wg);
 	}
 	
 	public int getId() {

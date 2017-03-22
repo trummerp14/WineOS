@@ -28,7 +28,6 @@ public class TestRepos {
 	}
 	
 	private static void createData() {
-		
 		tx.begin();
 		wlist.add(wrepo.createWeingut(1, "Petzoldstraﬂe", "Hirzberg", 8605));
 		wlist.add(wrepo.createWeingut(2, "Road to hell", "hell", 6666));

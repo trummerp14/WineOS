@@ -48,8 +48,8 @@ public class FlascheRepo {
 	/*
 	 * Factory methods
 	 */
-	public Flasche createFlasche(int Id, String Bezeichnung, double Fuellmenge, String Auspraegung, int Stueck, Charge charge) {
-		Flasche f = new Flasche(Id, Bezeichnung, Fuellmenge, Auspraegung, Stueck, charge);
+	public Flasche createFlasche(int Id, String Bezeichnung, double Fuellmenge, String Auspraegung, Charge charge) {
+		Flasche f = new Flasche(Id, Bezeichnung, Fuellmenge, Auspraegung, charge);
 		insert(f);
 		return f;
 	}

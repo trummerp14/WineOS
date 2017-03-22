@@ -44,7 +44,7 @@ public class ChargeRepo {
 		final String hql = "SELECT u FROM " + Charge.class.getName() + " AS u";
 		return em.getInstance().createQuery(hql).getResultList();
 	}
-
+	
 	/*
 	 * Factory methods
 	 */

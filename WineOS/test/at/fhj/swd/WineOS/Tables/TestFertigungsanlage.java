@@ -25,6 +25,9 @@ public class TestFertigungsanlage extends AbstractTest {
 	@Test
 	public void create() {
 		transaction.begin();
+		createWeingut();
+		Assert.assertNotNull(weingut);
+		manager.persist(weingut);
 		createAnlage();
 		Assert.assertNotNull(anlage);
 		manager.persist(anlage);
@@ -39,23 +42,23 @@ public class TestFertigungsanlage extends AbstractTest {
 		anlage1.addBestandteile("Abseianlage 2530Z");
 		anlage1.addBestandteile("Presse XY2300");
 		anlage1.addBestandteile("Maische-Tank 1000L");
-		createWeingut();
-		manager.persist(weingut);
-		anlage1.setWeingut(weingut);
 		transaction.commit();
 
 		teardown();
 		setup();
 
 		anlage1 = manager.find(Fertigungsanlage.class, 1);
-		Assert.assertEquals("Abseianlage 2530Z", anlage1.getBestandteile().get(1));
+		Assert.assertEquals("Abseianlage 2530Z", anlage1.getBestandteile().get(0));
 	}
 
 	@Test
 	public void remove() {
 		Fertigungsanlage anlage1 = manager.find(Fertigungsanlage.class, 1);
+		Weingut weingut = manager.find(Weingut.class, 1);
 		Assert.assertNotNull(anlage1);
+		Assert.assertNotNull(weingut);
 		transaction.begin();
+		manager.remove(weingut);
 		manager.remove(anlage1);
 		transaction.commit();
 
@@ -66,7 +69,7 @@ public class TestFertigungsanlage extends AbstractTest {
 	@Test
 	public void customAssert1() {
 		try {
-			new Fertigungsanlage(-1, "Gesamtanlage", 1000);
+			new Fertigungsanlage(-1, "Gesamtanlage", 1000, new Weingut());
 			Assert.fail();
 		} catch (IllegalArgumentException e) {
 			Assert.assertTrue(e instanceof IllegalArgumentException);
@@ -76,7 +79,7 @@ public class TestFertigungsanlage extends AbstractTest {
 	@Test
 	public void customAssert2() {
 		try {
-			new Fertigungsanlage(2, null, 1000);
+			new Fertigungsanlage(2, null, 1000, new Weingut());
 			Assert.fail();
 		} catch (IllegalArgumentException e) {
 			Assert.assertTrue(e instanceof IllegalArgumentException);
@@ -86,7 +89,7 @@ public class TestFertigungsanlage extends AbstractTest {
 	@Test
 	public void customAssert3() {
 		try {
-			new Fertigungsanlage(2, "Gesamtanlage", 0);
+			new Fertigungsanlage(2, "Gesamtanlage", 0, new Weingut());
 			Assert.fail();
 		} catch (IllegalArgumentException e) {
 			Assert.assertTrue(e instanceof IllegalArgumentException);
@@ -95,7 +98,17 @@ public class TestFertigungsanlage extends AbstractTest {
 
 	@Test
 	public void customAssert4() {
-		Fertigungsanlage anlage = new Fertigungsanlage(2, "Gesamtanlage", 2500);
+		try {
+			new Fertigungsanlage(2, "Gesamtanlage", 0, null);
+			Assert.fail();
+		} catch (IllegalArgumentException e) {
+			Assert.assertTrue(e instanceof IllegalArgumentException);
+		}
+	}
+	
+	@Test
+	public void customAssert5() {
+		Fertigungsanlage anlage = new Fertigungsanlage(2, "Gesamtanlage", 2500, new Weingut());
 		try {
 			anlage.addBestandteile(null);
 			Assert.fail();
@@ -105,8 +118,8 @@ public class TestFertigungsanlage extends AbstractTest {
 	}
 	
 	@Test
-	public void customAssert5() {
-		Fertigungsanlage anlage = new Fertigungsanlage(2, "Gesamtanlage", 2500);
+	public void customAssert6() {
+		Fertigungsanlage anlage = new Fertigungsanlage(2, "Gesamtanlage", 2500, new Weingut());
 		try {
 			anlage.setWeingut(null);
 			Assert.fail();
