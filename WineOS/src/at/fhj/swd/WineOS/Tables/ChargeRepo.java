@@ -6,43 +6,43 @@ import javax.persistence.EntityManager;
 
 public class ChargeRepo {
 
-	private EntityManager em;
+	private EntityManagerSingelton em;
 
 	/*
 	 * Constructor
 	 */
-	public ChargeRepo(EntityManager em) {
-		this.em = em;
+	public ChargeRepo() {
+		em = new EntityManagerSingelton();
 	}
 
 	public EntityManager getEntityManager() {
-		return em;
+		return em.getInstance();
 	}
 
 	/*
 	 * CRUD methods
 	 */
 	public Charge insert(Charge entity) {
-		em.persist(entity);
+		em.getInstance().persist(entity);
 		return entity;
 	}
 
 	public Charge update(Charge entity) {
-		return em.merge(entity);
+		return em.getInstance().merge(entity);
 	}
 
 	public void delete(Charge entity) {
-		em.remove(entity);
+		em.getInstance().remove(entity);
 	}
 
 	public Charge findById(int id) {
-		return em.find(Charge.class, id);
+		return em.getInstance().find(Charge.class, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Charge> findAll() {
 		final String hql = "SELECT u FROM " + Charge.class.getName() + " AS u";
-		return em.createQuery(hql).getResultList();
+		return em.getInstance().createQuery(hql).getResultList();
 	}
 
 	/*

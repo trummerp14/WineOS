@@ -7,21 +7,25 @@ import javax.persistence.*;
 
 @Entity(name = "dbo.Flasche")
 public class Flasche {
-	
-	//primary Key
-	@Id private int ID;
-	
+
+	// primary Key
+	@Id
+	private int Id;
+
 	// Beziehung zwischen Charge und Flaschen 1:n Source ist Charge
-	@ManyToOne 
-	@JoinColumn (name = "FK_Charge") private Charge charge;
-	
+	@ManyToOne
+	@JoinColumn(name = "FK_Charge")
+	private Charge charge;
+
 	// Beziehung zwischen Händler und Flasche m:n Source ist Händler
-	@ManyToMany (mappedBy = "flaschen") private Collection<Haendler> händler = new ArrayList<Haendler>();
+	@ManyToMany(mappedBy = "flaschen")
+	private Collection<Haendler> händler = new ArrayList<Haendler>();
 
 	private String Bezeichnung;
 	private String Auspraegung;
 	private double Fuellmenge;
-	
+	private int Stueck;
+
 	public Flasche(int Id, String Bezeichnung, double Fuellmenge, String Auspraegung, int Stueck, Charge charge) {
 		setId(Id);
 		setBezeichnung(Bezeichnung);
@@ -30,10 +34,13 @@ public class Flasche {
 		setAuspraegung(Auspraegung);
 		setCharge(charge);
 	}
-	
-	public Flasche(){};
+
+	public Flasche() {
+	};
 
 	public void setCharge(Charge charge) {
+		if (charge == null)
+			throw new IllegalArgumentException();
 		this.charge = charge;
 		this.charge.addFlasche(this);
 	}
@@ -42,63 +49,69 @@ public class Flasche {
 		return charge;
 	}
 
-	public int getId() {
-		return ID;
+	public void setId(int id) {
+		if (id <= 0)
+			throw new IllegalArgumentException();
+		this.Id = id;
 	}
 
-	public void setId(int id) {
-		this.ID = id;
+	public int getId() {
+		return Id;
+	}
+
+	public void setBezeichnung(String bezeichnung) {
+		if (bezeichnung == null)
+			throw new IllegalArgumentException();
+		this.Bezeichnung = bezeichnung;
 	}
 
 	public String getBezeichnung() {
 		return Bezeichnung;
 	}
 
-	public void setBezeichnung(String bezeichnung) {
-		Bezeichnung = bezeichnung;
+	public void setFuellmenge(double fuellmenge) {
+		Fuellmenge = fuellmenge;
 	}
 
 	public double getFuellmenge() {
 		return Fuellmenge;
 	}
 
-	public void setFuellmenge(double fuellmenge) {
-		Fuellmenge = fuellmenge;
+	public void setStueck(int stueck) {
+		if (stueck <= 0)
+			throw new IllegalArgumentException();
+		Stueck = stueck;
 	}
-
-	private int Stueck;
 
 	public int getStueck() {
 		return Stueck;
 	}
 
-	public void setStueck(int stueck) {
-		Stueck = stueck;
+	public void setAuspraegung(String auspraegung) {
+		if (auspraegung == null)
+			throw new IllegalArgumentException();
+		Auspraegung = auspraegung;
 	}
 
 	public String getAuspraegung() {
 		return Auspraegung;
 	}
 
-	public void setAuspraegung(String auspraegung) {
-		Auspraegung = auspraegung;
+	void addHaendler(Haendler händler) {
+		if(händler == null)
+			throw new IllegalArgumentException();
+		this.händler.add(händler);
 	}
-	
+
 	public Collection<Haendler> getHaendler() {
 		return händler;
 	}
-
-	void addHaendler(Haendler händler) {
-			this.händler.add(händler);
-	}
-	
-	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ID;
+		result = prime * result + Id;
 		return result;
 	}
 
@@ -111,14 +124,14 @@ public class Flasche {
 		if (getClass() != obj.getClass())
 			return false;
 		Flasche other = (Flasche) obj;
-		if (ID != other.ID)
+		if (Id != other.Id)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Flasche [Charge=" + charge + ", ID=" + ID + ", Bezeichnung=" + Bezeichnung + ", Fuellmenge="
+		return "Flasche [Charge=" + charge + ", Id=" + Id + ", Bezeichnung=" + Bezeichnung + ", Fuellmenge="
 				+ Fuellmenge + ", Stueck=" + Stueck + ", Auspruegung=" + Auspraegung + "]";
 	}
 }

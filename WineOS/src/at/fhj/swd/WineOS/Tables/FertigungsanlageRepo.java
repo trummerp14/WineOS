@@ -6,43 +6,43 @@ import javax.persistence.EntityManager;
 
 public class FertigungsanlageRepo {
 
-	private EntityManager em;
-
+	private EntityManagerSingelton em;
+	
 	/*
 	 * Constructor
 	 */
-	public FertigungsanlageRepo(EntityManager em) {
-		this.em = em;
+	public FertigungsanlageRepo() {
+		em = new EntityManagerSingelton();
 	}
 
 	public EntityManager getEntityManager() {
-		return em;
+		return em.getInstance();
 	}
 
 	/*
 	 * CRUD methods
 	 */
 	public Fertigungsanlage insert(Fertigungsanlage entity) {
-		em.persist(entity);
+		em.getInstance().persist(entity);
 		return entity;
 	}
 
 	public Fertigungsanlage update(Fertigungsanlage entity) {
-		return em.merge(entity);
+		return em.getInstance().merge(entity);
 	}
 
 	public void delete(Fertigungsanlage entity) {
-		em.remove(entity);
+		em.getInstance().remove(entity);
 	}
 
 	public Charge findById(int id) {
-		return em.find(Charge.class, id);
+		return em.getInstance().find(Charge.class, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Fertigungsanlage> findAll() {
 		final String hql = "SELECT u FROM " + Fertigungsanlage.class.getName() + " AS u";
-		return em.createQuery(hql).getResultList();
+		return em.getInstance().createQuery(hql).getResultList();
 	}
 
 	/*

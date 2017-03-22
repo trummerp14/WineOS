@@ -6,11 +6,6 @@ import org.junit.Test;
 public class TestFertigungsanlage extends AbstractTest {
 
 	@Test
-	public void testConstructor() {
-		new Fertigungsanlage(1, "Gesamtanlage", 1000);
-	}
-
-	@Test
 	public void testGetters() {
 		createAnlage();
 		Assert.assertEquals(1, anlage.getId());

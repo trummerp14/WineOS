@@ -45,14 +45,8 @@ public class Charge {
 		weingut.addCharge(this);
 	}
 
-	public ArrayList<Flasche> getFlaschen() {
-		ArrayList<Flasche> res;
-		try {
-			res = (ArrayList<Flasche>) flaschen;
-		} catch (Exception e) {
-			throw new ClassCastException();
-		}
-		return res;
+	public Collection<Flasche> getFlaschen() {
+		return flaschen;
 	}
 
 	public void addFlasche(Flasche flasche) {

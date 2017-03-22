@@ -1,48 +1,47 @@
 package at.fhj.swd.WineOS.Tables;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 
 public class WeingutRepo {
 
-	private EntityManager em;
-
+	private EntityManagerSingelton em;
+	
 	/*
 	 * Constructor
 	 */
-	public WeingutRepo(EntityManager em) {
-		this.em = em;
+	public WeingutRepo() {
+		em = new EntityManagerSingelton();
 	}
 
 	public EntityManager getEntityManager() {
-		return em;
+		return em.getInstance();
 	}
 
 	/*
 	 * CRUD methods
 	 */
 	public Weingut insert(Weingut entity) {
-		em.persist(entity);
+		em.getInstance().persist(entity);
 		return entity;
 	}
 
 	public Weingut update(Weingut entity) {
-		return em.merge(entity);
+		return em.getInstance().merge(entity);
 	}
 
 	public void delete(Weingut entity) {
-		em.remove(entity);
+		em.getInstance().remove(entity);
 	}
 
 	public Weingut findById(int id) {
-		return em.find(Weingut.class, id);
+		return em.getInstance().find(Weingut.class, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Weingut> findAll() {
 		final String hql = "SELECT u FROM " + Weingut.class.getName() + " AS u";
-		return em.createQuery(hql).getResultList();
+		return em.getInstance().createQuery(hql).getResultList();
 	}
 
 	/*

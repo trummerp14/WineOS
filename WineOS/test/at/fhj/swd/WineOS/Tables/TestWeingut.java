@@ -50,4 +50,5 @@ public class TestWeingut extends AbstractTest {
 		weingut = manager.find(Weingut.class, 1);
 		Assert.assertNull(weingut);
 	}
+	
 }

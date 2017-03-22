@@ -1,14 +1,11 @@
 package at.fhj.swd.WineOS.Tables;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 public class TestHaendler extends AbstractTest {
-
-	@Test
-	public void testConstructor() {
-		createHaendler();
-	}
 
 	@Test
 	public void create() {
@@ -45,5 +42,24 @@ public class TestHaendler extends AbstractTest {
 		
 		händler1 = manager.find(Haendler.class, 1);
 		Assert.assertNull(händler1);
+	}
+	
+	@Test
+	public void testGetters(){
+		createHaendler();
+		createWeingut();
+		createCharge();
+		createFlasche();
+		händler.addFlasche(flasche);
+		
+		//händler = new Haendler(1, "Super AG", "Testroad1", "teststadt", 5642);
+		Assert.assertEquals(1, händler.getId());
+		Assert.assertEquals("Super AG", händler.getName());
+		Assert.assertEquals("Testroad1", händler.getAdresse());
+		Assert.assertEquals("teststadt", händler.getOrt());
+		Assert.assertEquals(5642, händler.getPlz());
+		
+		ArrayList<Flasche> flaschen = (ArrayList<Flasche>)händler.getFlaschen();
+		Assert.assertTrue(flasche.equals(flaschen.get(0)));
 	}
 }

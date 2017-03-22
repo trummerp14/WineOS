@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Haendler 
 {
 	// Primary Key
-	@Id private int ID;
+	@Id private int id;
 
 	//Beziehung zwischen Flasche und Händler m:n Händler ist Source
 	@ManyToMany 
@@ -35,13 +35,13 @@ public class Haendler
 	public Haendler(){};
 
 	public int getId() {
-		return ID;
+		return id;
 	}
 
 	public void setId(int id) {
 		if(id <= 0)
 			throw new IllegalArgumentException();
-		this.ID = id;
+		this.id = id;
 	}
 
 	public String getName() {
@@ -97,7 +97,7 @@ public class Haendler
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ID;
+		result = prime * result + id;
 		return result;
 	}
 
@@ -110,7 +110,7 @@ public class Haendler
 		if (getClass() != obj.getClass())
 			return false;
 		Haendler other = (Haendler) obj;
-		if (ID != other.ID)
+		if (id != other.id)
 			return false;
 		return true;
 	}

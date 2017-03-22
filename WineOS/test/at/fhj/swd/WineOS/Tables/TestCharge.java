@@ -1,5 +1,7 @@
 package at.fhj.swd.WineOS.Tables;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -61,7 +63,7 @@ public class TestCharge extends AbstractTest {
 		Assert.assertEquals(weingut.getAdresse(), charge1.getWeingut().getAdresse());
 		
 		charge1.addFlasche(new Flasche(2, "Weiﬂburgunder", 0.75, "Kork", 1, new Charge()));
-		Assert.assertEquals(2, (charge1.getFlaschen().get(0).getId()));
+		Assert.assertEquals(2, (((ArrayList<Flasche>) charge1.getFlaschen()).get(0).getId()));
 	}
 
 	@Test

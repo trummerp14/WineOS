@@ -6,43 +6,43 @@ import javax.persistence.EntityManager;
 
 public class HaendlerRepo {
 
-	private EntityManager em;
+	private EntityManagerSingelton em;
 
 	/*
 	 * Constructor
 	 */
-	public HaendlerRepo(EntityManager em) {
-		this.em = em;
+	public HaendlerRepo() {
+		em = new EntityManagerSingelton();
 	}
 
 	public EntityManager getEntityManager() {
-		return em;
+		return em.getInstance();
 	}
 
 	/*
 	 * CRUD methods
 	 */
 	public Haendler insert(Haendler entity) {
-		em.persist(entity);
+		em.getInstance().persist(entity);
 		return entity;
 	}
 
 	public Haendler update(Haendler entity) {
-		return em.merge(entity);
+		return em.getInstance().merge(entity);
 	}
 
 	public void delete(Haendler entity) {
-		em.remove(entity);
+		em.getInstance().remove(entity);
 	}
 
 	public Haendler findById(int id) {
-		return em.find(Haendler.class, id);
+		return em.getInstance().find(Haendler.class, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Haendler> findAll() {
 		final String hql = "SELECT u FROM " + Haendler.class.getName() + " AS u";
-		return em.createQuery(hql).getResultList();
+		return em.getInstance().createQuery(hql).getResultList();
 	}
 
 	/*
