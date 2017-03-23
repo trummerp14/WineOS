@@ -65,6 +65,10 @@ public class Fertigungsanlage {
 		this.weingut.setAnlage(this);
 	}
 	
+	public Object getWeingut() {
+		return weingut;
+	}
+	
 	public void setVolume(int i){
 		if(i <= 0)
 			throw new IllegalArgumentException();
@@ -74,14 +78,12 @@ public class Fertigungsanlage {
 	public int getVolume(){
 		return volumen;
 	}
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bestandteile == null) ? 0 : bestandteile.hashCode());
-		result = prime * result + ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 
@@ -94,18 +96,15 @@ public class Fertigungsanlage {
 		if (getClass() != obj.getClass())
 			return false;
 		Fertigungsanlage other = (Fertigungsanlage) obj;
-		if (bestandteile == null) {
-			if (other.bestandteile != null)
-				return false;
-		} else if (!bestandteile.equals(other.bestandteile))
-			return false;
-		if (bezeichnung == null) {
-			if (other.bezeichnung != null)
-				return false;
-		} else if (!bezeichnung.equals(other.bezeichnung))
+		if (id != other.id)
 			return false;
 		return true;
 	}
+	
+	
+
+
+
 	
 	
 	

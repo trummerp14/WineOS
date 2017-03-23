@@ -35,8 +35,8 @@ public class FertigungsanlageRepo {
 		em.getInstance().remove(entity);
 	}
 
-	public Charge findById(int id) {
-		return em.getInstance().find(Charge.class, id);
+	public Fertigungsanlage findById(int id) {
+		return em.getInstance().find(Fertigungsanlage.class, id);
 	}
 
 	@SuppressWarnings("unchecked")

@@ -59,7 +59,7 @@ public class Flasche {
 	}
 
 	public void setBezeichnung(String bezeichnung) {
-		if (bezeichnung == null)
+		if (bezeichnung == null || bezeichnung.trim().length() == 0)
 			throw new IllegalArgumentException();
 		this.Bezeichnung = bezeichnung;
 	}
@@ -69,6 +69,8 @@ public class Flasche {
 	}
 
 	public void setFuellmenge(double fuellmenge) {
+		if(fuellmenge <= 0)
+			throw new IllegalArgumentException();
 		Fuellmenge = fuellmenge;
 	}
 
@@ -77,7 +79,7 @@ public class Flasche {
 	}
 
 	public void setAuspraegung(String auspraegung) {
-		if (auspraegung == null)
+		if (auspraegung == null || auspraegung.trim().length() == 0)
 			throw new IllegalArgumentException();
 		Auspraegung = auspraegung;
 	}

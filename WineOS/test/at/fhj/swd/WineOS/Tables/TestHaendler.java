@@ -62,4 +62,37 @@ public class TestHaendler extends AbstractTest {
 		ArrayList<Flasche> flaschen = (ArrayList<Flasche>)händler.getFlaschen();
 		Assert.assertTrue(flasche.equals(flaschen.get(0)));
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert1(){
+		new Haendler(0, "Test", "test", "test", 6500);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert2(){
+		new Haendler(1, " ", "test", "test", 6500);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert3(){
+		new Haendler(1, null, "test", "test", 6500);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert4(){
+		new Haendler(1, "Test", " ", "test", 6500);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert5(){
+		new Haendler(1, "Test", null, "test", 6500);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert6(){
+		new Haendler(1, "Test", "Test", " ", 6500);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert7(){
+		new Haendler(1, "Test", "Test", null, 6500);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert8(){
+		new Haendler(1, "Test", "Test", "Test", 999);
+	}
 }

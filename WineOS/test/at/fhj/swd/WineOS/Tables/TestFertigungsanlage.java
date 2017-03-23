@@ -65,66 +65,42 @@ public class TestFertigungsanlage extends AbstractTest {
 		anlage1 = manager.find(Fertigungsanlage.class, 1);
 		Assert.assertNull(anlage1);
 	}
-	
-	@Test
+
+	@Test(expected = IllegalArgumentException.class)
 	public void customAssert1() {
-		try {
-			new Fertigungsanlage(-1, "Gesamtanlage", 1000, new Weingut());
-			Assert.fail();
-		} catch (IllegalArgumentException e) {
-			Assert.assertTrue(e instanceof IllegalArgumentException);
-		}
+		new Fertigungsanlage(-1, "Gesamtanlage", 1000, new Weingut());
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void customAssert2() {
-		try {
-			new Fertigungsanlage(2, null, 1000, new Weingut());
-			Assert.fail();
-		} catch (IllegalArgumentException e) {
-			Assert.assertTrue(e instanceof IllegalArgumentException);
-		}
+		new Fertigungsanlage(2, null, 1000, new Weingut());
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void customAssert3() {
-		try {
-			new Fertigungsanlage(2, "Gesamtanlage", 0, new Weingut());
-			Assert.fail();
-		} catch (IllegalArgumentException e) {
-			Assert.assertTrue(e instanceof IllegalArgumentException);
-		}
+		new Fertigungsanlage(2, "Gesamtanlage", 0, new Weingut());
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void customAssert4() {
-		try {
-			new Fertigungsanlage(2, "Gesamtanlage", 0, null);
-			Assert.fail();
-		} catch (IllegalArgumentException e) {
-			Assert.assertTrue(e instanceof IllegalArgumentException);
-		}
+		new Fertigungsanlage(2, "Gesamtanlage", 0, null);
 	}
-	
-	@Test
+
+	@Test(expected = IllegalArgumentException.class)
 	public void customAssert5() {
 		Fertigungsanlage anlage = new Fertigungsanlage(2, "Gesamtanlage", 2500, new Weingut());
-		try {
-			anlage.addBestandteile(null);
-			Assert.fail();
-		} catch (IllegalArgumentException e) {
-			Assert.assertTrue(e instanceof IllegalArgumentException);
-		}
+		anlage.addBestandteile(null);
 	}
-	
-	@Test
+
+	@Test(expected = IllegalArgumentException.class)
 	public void customAssert6() {
 		Fertigungsanlage anlage = new Fertigungsanlage(2, "Gesamtanlage", 2500, new Weingut());
-		try {
-			anlage.setWeingut(null);
-			Assert.fail();
-		} catch (IllegalArgumentException e) {
-			Assert.assertTrue(e instanceof IllegalArgumentException);
-		}
+		anlage.setWeingut(null);
+	}
+	@Test
+	public void customAssert7() {
+		Fertigungsanlage anlage1 = new Fertigungsanlage(2, "Gesamtanlage", 2500, new Weingut());
+		Fertigungsanlage anlage2 = new Fertigungsanlage(2, "Anlage", 780, new Weingut());
+		Assert.assertTrue(anlage1.equals(anlage2));
 	}
 }

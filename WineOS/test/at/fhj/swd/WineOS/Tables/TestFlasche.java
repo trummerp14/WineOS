@@ -73,4 +73,61 @@ public class TestFlasche extends AbstractTest {
 		Assert.assertTrue(charge.equals(flasche.getCharge()));
 		Assert.assertTrue(händler.equals(((ArrayList<Haendler>)flasche.getHaendler()).get(0)));
 	}
+	
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert1(){
+		new Flasche(0, "Test", 0.75, "Kork", new Charge());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert2(){
+		new Flasche(1, "", 0.75, "Kork", new Charge());
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert3(){
+		new Flasche(1, null, 0.75, "Kork", new Charge());
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert4(){
+		new Flasche(1, "Test", 0, "Kork", new Charge());
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert5(){
+		new Flasche(1, "Test", 0.75, " ", new Charge());
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert6(){
+		new Flasche(1, "Test", 0.75, null, new Charge());
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert7(){
+		new Flasche(1, "Test", 0.75, "Kork", null);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void customAssert8(){
+		Flasche f = new Flasche(1, "Test", 0.75, "Kork", new Charge());
+		f.addHaendler(null);
+	}
+	@Test
+	public void customAssert9(){
+		Flasche f1 = new Flasche(1, "Test", 0.75, "Kork", new Charge());
+		Flasche f2 = new Flasche(1, "hallo", 1, "Kronkorken", new Charge());
+		Assert.assertTrue(f1.equals(f2));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -61,54 +61,34 @@ public class TestCharge extends AbstractTest {
 		Assert.assertEquals(2017099, charge1.getId());
 		Assert.assertEquals("Weiﬂburgunder", charge1.getBezeichnung());
 		Assert.assertEquals(weingut.getAdresse(), charge1.getWeingut().getAdresse());
-		
+
 		charge1.addFlasche(new Flasche(2, "Weiﬂburgunder", 0.75, "Kork", new Charge()));
 		Assert.assertEquals(2, (((ArrayList<Flasche>) charge1.getFlaschen()).get(0).getId()));
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void customAssert1() {
 		createWeingut();
-		try {
-			new Charge(0, "Weiﬂburgunder", weingut);
-			Assert.fail();
-		} catch (IllegalArgumentException e) {
-			Assert.assertTrue(e instanceof IllegalArgumentException);
-		}
+		new Charge(0, "Weiﬂburgunder", weingut);
 	}
-	
-	@Test
+
+	@Test(expected = IllegalArgumentException.class)
 	public void customAssert2() {
 		createWeingut();
-		try {
-			new Charge(1, null, weingut);
-			Assert.fail();
-		} catch (IllegalArgumentException e) {
-			Assert.assertTrue(e instanceof IllegalArgumentException);
-		}
+		new Charge(1, null, weingut);
 	}
-	
-	@Test
+
+	@Test(expected = IllegalArgumentException.class)
 	public void customAssert3() {
 		createWeingut();
-		try {
-			new Charge(1, "Weiﬂburgunder", null);
-			Assert.fail();
-		} catch (IllegalArgumentException e) {
-			Assert.assertTrue(e instanceof IllegalArgumentException);
-		}
+		new Charge(1, "Weiﬂburgunder", null);
 	}
-	
-	@Test
+
+	@Test(expected = IllegalArgumentException.class)
 	public void customAssert4() {
 		createWeingut();
 		Charge charge1 = new Charge(1, "Weiﬂburgunder", weingut);
-		try {
-			charge1.addFlasche(null);
-			Assert.fail();
-		} catch (IllegalArgumentException e) {
-			Assert.assertTrue(e instanceof IllegalArgumentException);
-		}
+		charge1.addFlasche(null);
 	}
 
 }

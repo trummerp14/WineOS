@@ -49,7 +49,7 @@ public class Haendler
 	}
 
 	public void setName(String name) {
-		if(name == null)
+		if(name == null || name.trim().length() == 0)
 			throw new IllegalArgumentException();
 		this.name = name;
 	}
@@ -59,7 +59,7 @@ public class Haendler
 	}
 
 	public void setAdresse(String adresse) {
-		if(adresse == null)
+		if(adresse == null || adresse.trim().length() == 0)
 			throw new IllegalArgumentException();
 		this.adresse = adresse;
 	}
@@ -69,7 +69,7 @@ public class Haendler
 	}
 
 	public void setOrt(String ort) {
-		if(ort == null)
+		if(ort == null || ort.trim().length() == 0)
 			throw new IllegalArgumentException();
 		this.ort = ort;
 	}
@@ -92,7 +92,7 @@ public class Haendler
 		this.flaschen.add(flasche);
 		flasche.addHaendler(this);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -113,8 +113,5 @@ public class Haendler
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-	
-
+	}	
 }
