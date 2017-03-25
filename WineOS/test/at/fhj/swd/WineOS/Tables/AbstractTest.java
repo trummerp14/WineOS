@@ -49,7 +49,7 @@ public abstract class AbstractTest {
 	}
 
 	public static void createFlasche() {
-		flasche = new Flasche(1, "Veltliner", 0.75, "kork", charge);
+		flasche = new Flasche(1, "Veltliner", 0.75, 1, "kork", charge);
 	}
 
 	public static void createCharge() {

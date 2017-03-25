@@ -19,7 +19,7 @@
  				 value="jdbc:sqlserver://localhost:1433;databaseName=WINE_OS"/>
        <property name="javax.persistence.jdbc.user" value="chofer"/>
        <property name="javax.persistence.jdbc.password" value="wineos"/>
-       <property name="eclipselink.logging.level" value="FINEST"/>
+       <property name="eclipselink.logging.level" value="OFF"/>
      </properties>
    </persistence-unit>
 </persistence>

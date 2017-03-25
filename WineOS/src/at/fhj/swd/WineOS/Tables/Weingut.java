@@ -8,8 +8,21 @@ import javax.persistence.*;
 
 @Entity
 @Table (name = "dbo.Weingut")
-public class Weingut {
 
+@NamedQueries({
+	@NamedQuery(name="ChargeFlaschen",
+				query = "SELECT c.bezeichnung, f.bezeichnung, f.auspraegung "+
+						"FROM Charge c JOIN c.flaschen f "+
+						"ORDER BY f.fuellmenge"),
+	@NamedQuery(name="WeingutHaendler",
+				query = "SELECT w.id, w.adresse, c.bezeichnung, f.bezeichnung, h.name, h.ort "+
+						"FROM Weingut w JOIN w.chargen c JOIN c.flaschen f JOIN f.haendler h "+
+						"WHERE w.ort = :wOrt " +
+						"ORDER BY f.stueck")
+})
+
+public class Weingut {
+	
 	// primary key
 	@Id private int id;
 	
@@ -122,7 +135,7 @@ public class Weingut {
 		return true;
 	}
 
-
+	
 	
 	
 	

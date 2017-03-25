@@ -10,7 +10,7 @@ public class Flasche {
 
 	// primary Key
 	@Id
-	private int Id;
+	private int id;
 
 	// Beziehung zwischen Charge und Flaschen 1:n Source ist Charge
 	@ManyToOne
@@ -21,21 +21,32 @@ public class Flasche {
 	@ManyToMany(mappedBy = "flaschen")
 	private Collection<Haendler> haendler = new ArrayList<Haendler>();
 
-	private String Bezeichnung;
-	private String Auspraegung;
-	private double Fuellmenge;
-	private int Stueck;
+	private String bezeichnung;
+	private String auspraegung;
+	private double fuellmenge;
+	private int stueck;
 
-	public Flasche(int Id, String Bezeichnung, double Fuellmenge, String Auspraegung, Charge charge) {
+	public Flasche(int Id, String Bezeichnung, double Fuellmenge,int stueck, String Auspraegung, Charge charge) {
 		setId(Id);
 		setBezeichnung(Bezeichnung);
 		setFuellmenge(Fuellmenge);
 		setAuspraegung(Auspraegung);
 		setCharge(charge);
+		setStueck(stueck);
 	}
 
 	public Flasche() {
 	};
+
+	public int getStueck() {
+		return stueck;
+	}
+
+	public void setStueck(int stueck) {
+		if(stueck < 0)
+			throw new IllegalArgumentException();
+		this.stueck = stueck;
+	}
 
 	public void setCharge(Charge charge) {
 		if (charge == null)
@@ -51,41 +62,41 @@ public class Flasche {
 	public void setId(int id) {
 		if (id <= 0)
 			throw new IllegalArgumentException();
-		this.Id = id;
+		this.id = id;
 	}
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setBezeichnung(String bezeichnung) {
 		if (bezeichnung == null || bezeichnung.trim().length() == 0)
 			throw new IllegalArgumentException();
-		this.Bezeichnung = bezeichnung;
+		this.bezeichnung = bezeichnung;
 	}
 
 	public String getBezeichnung() {
-		return Bezeichnung;
+		return bezeichnung;
 	}
 
 	public void setFuellmenge(double fuellmenge) {
 		if(fuellmenge <= 0)
 			throw new IllegalArgumentException();
-		Fuellmenge = fuellmenge;
+		this.fuellmenge = fuellmenge;
 	}
 
 	public double getFuellmenge() {
-		return Fuellmenge;
+		return fuellmenge;
 	}
 
 	public void setAuspraegung(String auspraegung) {
 		if (auspraegung == null || auspraegung.trim().length() == 0)
 			throw new IllegalArgumentException();
-		Auspraegung = auspraegung;
+		this.auspraegung = auspraegung;
 	}
 
 	public String getAuspraegung() {
-		return Auspraegung;
+		return auspraegung;
 	}
 
 	void addHaendler(Haendler haendler) {
@@ -102,7 +113,7 @@ public class Flasche {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Id;
+		result = prime * result + id;
 		return result;
 	}
 
@@ -115,14 +126,14 @@ public class Flasche {
 		if (getClass() != obj.getClass())
 			return false;
 		Flasche other = (Flasche) obj;
-		if (Id != other.Id)
+		if (id != other.id)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Flasche [Charge=" + charge + ", Id=" + Id + ", Bezeichnung=" + Bezeichnung + ", Fuellmenge="
-				+ Fuellmenge + ", Stueck=" + Stueck + ", Auspruegung=" + Auspraegung + "]";
+		return "Flasche [Charge=" + charge + ", Id=" + id + ", Bezeichnung=" + bezeichnung + ", Fuellmenge="
+				+ fuellmenge + ", Stueck=" + stueck + ", Auspruegung=" + auspraegung + "]";
 	}
 }

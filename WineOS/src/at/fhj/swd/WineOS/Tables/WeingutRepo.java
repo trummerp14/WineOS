@@ -52,4 +52,25 @@ public class WeingutRepo {
 		insert(wg);
 		return wg;
 	}
+	
+	@SuppressWarnings("rawtypes")
+	public List findWithAdresse(String adresse) {
+	    return em.getInstance().createQuery(
+	        "SELECT w FROM Weingut w WHERE w.adresse LIKE :wAdresse", Weingut.class)
+	        .setParameter("wAdresse", adresse)
+	        .getResultList();
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public List findChargeFlaschen() {
+	    return em.getInstance().createNamedQuery("ChargeFlaschen")
+	        .getResultList();
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public List findWeingutHaendler(String ort) {
+	    return em.getInstance().createNamedQuery("WeingutHaendler")
+	    		.setParameter("wOrt", ort)
+	    		.getResultList();
+	}
 }

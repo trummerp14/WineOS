@@ -193,8 +193,31 @@ public class TestRepos {
 		tx.commit();
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testQuerry(){
+		
+		List<Weingut> l = wrepo.findWithAdresse("Petzoldstraße");
+		Assert.assertTrue(l.get(0) instanceof Weingut);
+	}
 	
-	@AfterClass
+	@SuppressWarnings("rawtypes")
+	@Test
+	public void testNamedQuerry1(){
+		List l = wrepo.findChargeFlaschen();
+		System.out.println(l.toString());
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Test
+	public void testNamedQuerry2(){
+		List l = wrepo.findWeingutHaendler("Trumptower");
+		System.out.println(l.toString());
+	}
+	
+	
+	
+	//@AfterClass
 	public static void teardown(){
 		tx.begin();
 		
@@ -255,17 +278,17 @@ public class TestRepos {
 	}
 
 	private static void addFlaschen() {
-		fllist.add(flrepo.createFlasche(1, "Weißburgunder süd", 0.75, "Kronkorken", clist.get(0)));
-		fllist.add(flrepo.createFlasche(2, "Weißbrugunder süd", 0.75, "Kronkorken", clist.get(0)));
-		fllist.add(flrepo.createFlasche(3, "Weißbrugunder süd", 0.75, "Kronkorken", clist.get(0)));
-		fllist.add(flrepo.createFlasche(4, "Weißbrugunder süd", 0.75, "Kronkorken", clist.get(0)));
-		fllist.add(flrepo.createFlasche(5, "Riesling südwest", 0.75, "Korken", clist.get(1)));
-		fllist.add(flrepo.createFlasche(6, "Riesling südwest", 0.75, "Korken", clist.get(1)));
-		fllist.add(flrepo.createFlasche(7, "Riesling südwest", 0.75, "Korken", clist.get(1)));
-		fllist.add(flrepo.createFlasche(8, "Riesling südwest", 0.75, "Korken", clist.get(1)));
-		fllist.add(flrepo.createFlasche(9, "Blaufränkischer", 0.75, "Korken", clist.get(2)));
-		fllist.add(flrepo.createFlasche(10, "Blaufränkischer", 0.75, "Korken", clist.get(2)));
-		fllist.add(flrepo.createFlasche(11, "Blaufränkischer", 0.75, "Korken", clist.get(2)));
-		fllist.add(flrepo.createFlasche(12, "Blaufränkischer", 0.75, "Korken", clist.get(2)));
+		fllist.add(flrepo.createFlasche(1, "Weißburgunder süd", 0.75, 1, "Kronkorken", clist.get(0)));
+		fllist.add(flrepo.createFlasche(2, "Weißbrugunder süd", 0.75, 1, "Kronkorken", clist.get(0)));
+		fllist.add(flrepo.createFlasche(3, "Weißbrugunder süd", 0.75, 1, "Kronkorken", clist.get(0)));
+		fllist.add(flrepo.createFlasche(4, "Weißbrugunder süd", 0.75, 1, "Kronkorken", clist.get(0)));
+		fllist.add(flrepo.createFlasche(5, "Riesling südwest", 0.75, 1, "Korken", clist.get(1)));
+		fllist.add(flrepo.createFlasche(6, "Riesling südwest", 0.75, 1, "Korken", clist.get(1)));
+		fllist.add(flrepo.createFlasche(7, "Riesling südwest", 0.75, 1, "Korken", clist.get(1)));
+		fllist.add(flrepo.createFlasche(8, "Riesling südwest", 0.75, 1, "Korken", clist.get(1)));
+		fllist.add(flrepo.createFlasche(9, "Blaufränkischer", 0.75, 1, "Korken", clist.get(2)));
+		fllist.add(flrepo.createFlasche(10, "Blaufränkischer", 0.75, 1, "Korken", clist.get(2)));
+		fllist.add(flrepo.createFlasche(11, "Blaufränkischer", 0.75, 1, "Korken", clist.get(2)));
+		fllist.add(flrepo.createFlasche(12, "Blaufränkischer", 0.75, 1, "Korken", clist.get(2)));
 	}
 }
