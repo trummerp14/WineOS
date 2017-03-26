@@ -1,7 +1,7 @@
 USE [WINE_OS]
 GO
 
-/****** Object:  Table [dbo].[Flasche]    Script Date: 18.03.2017 15:57:45 ******/
+/****** Object:  Table [dbo].[Flasche]    Script Date: 26.03.2017 16:46:50 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -36,13 +36,6 @@ ON DELETE CASCADE
 GO
 
 ALTER TABLE [dbo].[Flasche] CHECK CONSTRAINT [FK_Flasche_Charge]
-GO
-
-ALTER TABLE [dbo].[Flasche]  WITH CHECK ADD  CONSTRAINT [FK_Flasche_Flasche] FOREIGN KEY([ID])
-REFERENCES [dbo].[Flasche] ([ID])
-GO
-
-ALTER TABLE [dbo].[Flasche] CHECK CONSTRAINT [FK_Flasche_Flasche]
 GO
 
 

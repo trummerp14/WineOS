@@ -1,7 +1,7 @@
 USE [WINE_OS]
 GO
 
-/****** Object:  Table [dbo].[Haendler]    Script Date: 18.03.2017 15:57:10 ******/
+/****** Object:  Table [dbo].[Haendler]    Script Date: 26.03.2017 16:47:15 ******/
 SET ANSI_NULLS ON
 GO
 

@@ -7,13 +7,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.RollbackException;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestWriter {
+public class TestAdmin {
 
 	static final String persistenceUnitName = "WINE_OS";
 	static EntityManagerFactory emf;
@@ -32,7 +31,7 @@ public class TestWriter {
 	
 	@Test
 	public void testInsert(){
-		open("writer", "writer");
+		open("admin", "admin");
 		tx = em.getTransaction();
 		tx.begin();
 		w = new Weingut(1, "Teststraﬂe 1", "Testdorf", 8600);
@@ -46,7 +45,7 @@ public class TestWriter {
 		//setup
 		testInsert();
 		
-		open("writer", "writer");
+		open("admin", "admin");
 		tx = em.getTransaction();
 		tx.begin();
 		Weingut w = em.find(Weingut.class, 1);
@@ -59,7 +58,7 @@ public class TestWriter {
 		//setup
 		testInsert();
 		
-		open("writer", "writer");
+		open("admin", "admin");
 		tx = em.getTransaction();
 		tx.begin();
 		Weingut verify = em.find(Weingut.class, 1);
@@ -69,12 +68,12 @@ public class TestWriter {
 		tx.commit();
 	}
 	
-	@Test(expected = RollbackException.class)
+	@Test
 	public void testDelete(){
 		//setup
 		testInsert();
 		
-		open("writer", "writer");
+		open("admin", "admin");
 		tx = em.getTransaction();
 		tx.begin();
 		Weingut verify = em.find(Weingut.class, 1);

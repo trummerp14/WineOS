@@ -29,7 +29,7 @@ public class Weingut {
 	// Beziehung zu Fertigungsanlage. 1:1 Source ist Weingut
 	@OneToOne (mappedBy = "weingut") private Fertigungsanlage anlage;
 	
-	// Beziehugn zu Charge 1:M Source is Weingut
+	// Beziehung zu Charge 1:M Source is Weingut
 	@OneToMany(mappedBy = "weingut") private Collection<Charge> chargen = new ArrayList<Charge>();
 	
 	private String adresse;

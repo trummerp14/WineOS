@@ -13,7 +13,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestWriter {
+public class TestReader {
 
 	static final String persistenceUnitName = "WINE_OS";
 	static EntityManagerFactory emf;
@@ -30,9 +30,9 @@ public class TestWriter {
 		em = emf.createEntityManager();
 	}
 	
-	@Test
+	@Test(expected = RollbackException.class)
 	public void testInsert(){
-		open("writer", "writer");
+		open("reader", "reader");
 		tx = em.getTransaction();
 		tx.begin();
 		w = new Weingut(1, "Teststraﬂe 1", "Testdorf", 8600);
@@ -44,9 +44,16 @@ public class TestWriter {
 	@Test
 	public void testSelect(){
 		//setup
-		testInsert();
+		open("chofer", "wineos");
+		tx = em.getTransaction();
+		tx.begin();
+		w = new Weingut(1, "Teststraﬂe 1", "Testdorf", 8600);
+		Assert.assertNotNull(w);
+		em.persist(w);
+		tx.commit();
 		
-		open("writer", "writer");
+		//exercise
+		open("reader", "reader");
 		tx = em.getTransaction();
 		tx.begin();
 		Weingut w = em.find(Weingut.class, 1);
@@ -54,12 +61,12 @@ public class TestWriter {
 		tx.commit();
 	}
 	
-	@Test
+	@Test(expected = RollbackException.class)
 	public void testUpdate(){
 		//setup
 		testInsert();
 		
-		open("writer", "writer");
+		open("reader", "reader");
 		tx = em.getTransaction();
 		tx.begin();
 		Weingut verify = em.find(Weingut.class, 1);
@@ -74,7 +81,7 @@ public class TestWriter {
 		//setup
 		testInsert();
 		
-		open("writer", "writer");
+		open("reader", "reader");
 		tx = em.getTransaction();
 		tx.begin();
 		Weingut verify = em.find(Weingut.class, 1);

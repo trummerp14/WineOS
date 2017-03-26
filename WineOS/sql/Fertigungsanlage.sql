@@ -1,7 +1,7 @@
 USE [WINE_OS]
 GO
 
-/****** Object:  Table [dbo].[Fertigungsanlage]    Script Date: 18.03.2017 15:58:13 ******/
+/****** Object:  Table [dbo].[Fertigungsanlage]    Script Date: 26.03.2017 16:46:36 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -13,6 +13,7 @@ CREATE TABLE [dbo].[Fertigungsanlage](
 	[Bezeichnung] [nvarchar](max) NOT NULL,
 	[Volumen] [int] NOT NULL,
 	[Bestandteile] [nvarchar](max) NULL,
+	[FK_Weingut] [int] NOT NULL,
  CONSTRAINT [PK_Fertigungsanlage] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -21,7 +22,7 @@ CREATE TABLE [dbo].[Fertigungsanlage](
 
 GO
 
-ALTER TABLE [dbo].[Fertigungsanlage]  WITH CHECK ADD  CONSTRAINT [FK_Fertigungsanlage_Weingut] FOREIGN KEY([ID])
+ALTER TABLE [dbo].[Fertigungsanlage]  WITH CHECK ADD  CONSTRAINT [FK_Fertigungsanlage_Weingut] FOREIGN KEY([FK_Weingut])
 REFERENCES [dbo].[Weingut] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE

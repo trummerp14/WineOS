@@ -1,7 +1,7 @@
 USE [WINE_OS]
 GO
 
-/****** Object:  Table [dbo].[Charge]    Script Date: 18.03.2017 15:58:28 ******/
+/****** Object:  Table [dbo].[Charge]    Script Date: 26.03.2017 16:46:07 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -14,7 +14,7 @@ GO
 CREATE TABLE [dbo].[Charge](
 	[ID] [int] NOT NULL,
 	[Bezeichnung] [varchar](max) NOT NULL,
-	[Weingut_ID] [int] NOT NULL,
+	[FK_Weingut] [int] NOT NULL,
  CONSTRAINT [PK_Charge] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -26,7 +26,7 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-ALTER TABLE [dbo].[Charge]  WITH CHECK ADD  CONSTRAINT [FK_Charge_Weingut] FOREIGN KEY([Weingut_ID])
+ALTER TABLE [dbo].[Charge]  WITH CHECK ADD  CONSTRAINT [FK_Charge_Weingut] FOREIGN KEY([FK_Weingut])
 REFERENCES [dbo].[Weingut] ([ID])
 ON UPDATE CASCADE
 ON DELETE CASCADE

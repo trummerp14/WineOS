@@ -217,7 +217,7 @@ public class TestRepos {
 	
 	
 	
-	//@AfterClass
+	@AfterClass
 	public static void teardown(){
 		tx.begin();
 		
