@@ -85,11 +85,10 @@ public class Weingut {
 		this.plz = plz;
 	}
 
-	public void addCharge(Charge charge) {
+	void addCharge(Charge charge) {
 		if(charge == null)
 			throw new IllegalArgumentException();
 		chargen.add(charge);
-		//charge.setWeingut(this);
 	}
 	
 	public Collection<Charge> getChargen(){
@@ -103,7 +102,7 @@ public class Weingut {
 		return list.get(index);
 	}
 
-	public void setAnlage(Fertigungsanlage wb){
+	void setAnlage(Fertigungsanlage wb){
 		if(wb == null)
 			throw new IllegalArgumentException();
 		this.anlage = wb;

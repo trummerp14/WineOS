@@ -49,7 +49,7 @@ public class Charge {
 		return flaschen;
 	}
 
-	public void addFlasche(Flasche flasche) {
+	void addFlasche(Flasche flasche) {
 		if(flasche == null)
 			throw new IllegalArgumentException();
 		flaschen.add(flasche);
