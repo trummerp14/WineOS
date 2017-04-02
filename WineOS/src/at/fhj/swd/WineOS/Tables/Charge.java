@@ -12,7 +12,7 @@ public class Charge {
 	@Id
 	private int id;
 	@ManyToOne @JoinColumn(name = "FK_Weingut") private Weingut weingut;
-	@OneToMany (mappedBy = "Charge") private Collection<Flasche> flaschen = new ArrayList<Flasche>();
+	@OneToMany (mappedBy = "charge") private Collection<Flasche> flaschen = new ArrayList<Flasche>();
 	private String bezeichnung;
 
 	public Charge(int id, String bezeichnung, Weingut weingut) {
