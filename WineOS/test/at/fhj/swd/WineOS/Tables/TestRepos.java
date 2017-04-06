@@ -211,7 +211,7 @@ public class TestRepos {
 	@SuppressWarnings("rawtypes")
 	@Test
 	public void testNamedQuerry2(){
-		List l = wrepo.findWeingutHaendler("Trumptower");
+		List l = wrepo.findWeingutHaendler("Weiﬂburgunder");
 		System.out.println(l.toString());
 	}
 	

@@ -19,7 +19,7 @@ public class Fertigungsanlage {
 	private Weingut weingut;
 
 	private String bezeichnung;
-	private String bestandteile = null;
+	private String bestandteile;
 	private int volumen;
 
 	public Fertigungsanlage() {

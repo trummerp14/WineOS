@@ -17,7 +17,7 @@ import javax.persistence.*;
 	@NamedQuery(name="WeingutHaendler",
 				query = "SELECT w.id, w.adresse, c.bezeichnung, f.bezeichnung, h.name, h.ort "+
 						"FROM Weingut w JOIN w.chargen c JOIN c.flaschen f JOIN f.haendler h "+
-						"WHERE w.ort = :wOrt " +
+						"WHERE c.bezeichnung = :wBez " +
 						"ORDER BY f.stueck")
 })
 

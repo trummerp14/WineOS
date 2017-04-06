@@ -68,9 +68,9 @@ public class WeingutRepo {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public List findWeingutHaendler(String ort) {
+	public List findWeingutHaendler(String bez) {
 	    return em.getInstance().createNamedQuery("WeingutHaendler")
-	    		.setParameter("wOrt", ort)
+	    		.setParameter("wBez", bez)
 	    		.getResultList();
 	}
 }
