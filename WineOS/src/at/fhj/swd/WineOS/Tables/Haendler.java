@@ -105,5 +105,13 @@ public class Haendler
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Haendler [id=" + id + ", flaschen=" + flaschen + ", name=" + name + ", adresse=" + adresse + ", ort="
+				+ ort + ", plz=" + plz + "]";
 	}	
+	
+	
 }

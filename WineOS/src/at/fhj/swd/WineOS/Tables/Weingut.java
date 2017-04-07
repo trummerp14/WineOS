@@ -14,16 +14,14 @@ import javax.persistence.*;
 				query = "SELECT c.bezeichnung, f.bezeichnung, f.auspraegung "+
 						"FROM Charge c JOIN c.flaschen f "+
 						"ORDER BY f.fuellmenge"),
-	@NamedQuery(name="!WeingutHaendler",
-				query = "SELECT w.id, w.adresse, c.bezeichnung, f.bezeichnung, h.name, h.ort "+
-						"FROM Weingut w JOIN w.chargen c JOIN c.flaschen f JOIN f.haendler h "+
-						"WHERE c.bezeichnung = :wBez " +
-						"ORDER BY f.stueck"),
-	@NamedQuery(name="WeingutHaendler",
-				query = "SELECT w " +
+	@NamedQuery(name="findCharge",
+				query = "SELECT c " +
 						"FROM Charge c JOIN c.flaschen f JOIN c.weingut w " +
-						"WHERE c.bezeichnung = :wBez"
-				)
+						"WHERE c.bezeichnung = :wBez"),
+	@NamedQuery(name="findHaendler",
+				query = "SELECT h " +
+						"FROM Haendler h JOIN h.flaschen f JOIN f.charge c JOIN c.weingut w " +
+						"WHERE w.id = :id"),
 })
 
 public class Weingut {

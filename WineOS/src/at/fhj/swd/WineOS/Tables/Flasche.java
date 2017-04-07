@@ -130,4 +130,13 @@ public class Flasche {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Flasche [id=" + id + ", bezeichnung=" + bezeichnung + ", auspraegung=" + auspraegung + ", fuellmenge="
+				+ fuellmenge + ", stueck=" + stueck + ", charge=" + charge +"]";
+	}
+	
+	
+	
 }

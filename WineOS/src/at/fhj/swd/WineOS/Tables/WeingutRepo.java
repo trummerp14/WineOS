@@ -1,5 +1,6 @@
 package at.fhj.swd.WineOS.Tables;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -53,8 +54,7 @@ public class WeingutRepo {
 		return wg;
 	}
 	
-	@SuppressWarnings("rawtypes")
-	public List findWithAdresse(String adresse) {
+	public List<Weingut> findWithAdresse(String adresse) {
 	    return em.getInstance().createQuery(
 	        "SELECT w FROM Weingut w WHERE w.adresse LIKE :wAdresse", Weingut.class)
 	        .setParameter("wAdresse", adresse)
@@ -67,10 +67,22 @@ public class WeingutRepo {
 	        .getResultList();
 	}
 	
-	@SuppressWarnings("rawtypes")
-	public List findWeingutHaendler(String bez) {
-	    return em.getInstance().createNamedQuery("WeingutHaendler")
+	@SuppressWarnings("unchecked")
+	public List<Charge> findCharge(String bez) {
+	    return em.getInstance().createNamedQuery("findCharge")
 	    		.setParameter("wBez", bez)
 	    		.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Haendler> findHaendlerFromWeingut(int weingut){
+		List<Haendler> list =  em.getInstance().createNamedQuery("findHaendler").setParameter("id", weingut).getResultList();
+		List<Haendler> res = new ArrayList<Haendler>();
+		for(Haendler h : list){
+			if(!res.contains(h)){
+				res.add(h);
+			}
+		}
+		return res;
 	}
 }
