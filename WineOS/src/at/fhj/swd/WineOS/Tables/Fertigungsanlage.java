@@ -112,4 +112,12 @@ public class Fertigungsanlage {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Fertigungsanlage [id=" + id + ", bezeichnung=" + bezeichnung + ", bestandteile=" + bestandteile
+				+ ", volumen=" + volumen + "]";
+	}
+
+	
+	
 }

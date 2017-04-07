@@ -14,11 +14,16 @@ import javax.persistence.*;
 				query = "SELECT c.bezeichnung, f.bezeichnung, f.auspraegung "+
 						"FROM Charge c JOIN c.flaschen f "+
 						"ORDER BY f.fuellmenge"),
-	@NamedQuery(name="WeingutHaendler",
+	@NamedQuery(name="!WeingutHaendler",
 				query = "SELECT w.id, w.adresse, c.bezeichnung, f.bezeichnung, h.name, h.ort "+
 						"FROM Weingut w JOIN w.chargen c JOIN c.flaschen f JOIN f.haendler h "+
 						"WHERE c.bezeichnung = :wBez " +
-						"ORDER BY f.stueck")
+						"ORDER BY f.stueck"),
+	@NamedQuery(name="WeingutHaendler",
+				query = "SELECT w " +
+						"FROM Charge c JOIN c.flaschen f JOIN c.weingut w " +
+						"WHERE c.bezeichnung = :wBez"
+				)
 })
 
 public class Weingut {
@@ -132,6 +137,12 @@ public class Weingut {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Weingut [id=" + id + ", anlage=" + anlage + ", chargen=" + chargen + ", adresse=" + adresse + ", ort="
+				+ ort + ", plz=" + plz + "]";
 	}
 
 	

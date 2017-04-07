@@ -87,4 +87,11 @@ public class Charge {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Charge [id=" + id + ", bezeichnung=" + bezeichnung + "]";
+	}
+
+	
+	
 }

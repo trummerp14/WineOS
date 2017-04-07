@@ -1,5 +1,6 @@
 package at.fhj.swd.WineOS.Tables;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -208,11 +209,18 @@ public class TestRepos {
 		System.out.println(l.toString());
 	}
 	
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "unchecked" })
 	@Test
 	public void testNamedQuerry2(){
-		List l = wrepo.findWeingutHaendler("Weiﬂburgunder");
-		System.out.println(l.toString());
+		try {
+			List<Weingut> l = wrepo.findWeingutHaendler("Weiﬂburgunder");
+			for (int i = 0; i < l.size(); i++){
+				System.out.println(l.get(i).toString());
+			}
+		} catch (Exception e) {
+			throw new ClassCastException("wrong type: " + e.toString());
+		}
+		
 	}
 	
 	
