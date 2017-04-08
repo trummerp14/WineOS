@@ -22,6 +22,14 @@ import javax.persistence.*;
 				query = "SELECT h " +
 						"FROM Haendler h JOIN h.flaschen f JOIN f.charge c JOIN c.weingut w " +
 						"WHERE w.id = :id"),
+	@NamedQuery(name="findWeingut",
+				query = "SELECT w " +
+						"FROM Weingut w JOIN w.charge c JOIN c.flaschen f JOIN f.fertigungsanlage fa " +
+						"WHERE w.id = :id"),
+	@NamedQuery(name="findFertigungsanlage",
+				query = "SELECT fa " +
+						"FROM Fertigungsanlage fa JOIN fa.weingut w JOIN w.charge c JOIN c.flasche f " +
+						"WHERE w.id = :id"),
 })
 
 public class Weingut {
